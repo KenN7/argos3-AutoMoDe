@@ -11,7 +11,7 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/khasselmann/argos3-AutoMoDe/build/loop-functions/libgianduja_stop_loopfunc.so"
+  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/libgianduja_stop_loopfunc.so"
    label="gianduja_stop_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
@@ -91,7 +91,7 @@
   <!-- ********** -->
   <!-- * E-Puck * -->
   <!-- ********** -->
-  <!-- <distribute>
+  <distribute>
     <position method="uniform" min="-0.9,-1,0" max="0.9,-0.5,0" />
     <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
     <entity quantity="10" max_trials="100">
@@ -99,7 +99,7 @@
         <controller config="automode" />
       </e-puck>
     </entity>
-  </distribute> -->
+  </distribute>
 
   </arena>
 
