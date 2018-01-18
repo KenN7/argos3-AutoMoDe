@@ -15,6 +15,8 @@ elseif(ARGOS_BUILD_FOR_LOCALEPUCK)
   link_directories(${ARGOS_LIBRARY_DIRS})
 endif()
 
+MESSAGE(${ARGOS_INCLUDE_DIRS}" : "${ARGOS_LIBRARY_DIRS})
+
 #
 # Check for Lua 5.1
 #
@@ -45,7 +47,7 @@ endif(ARGOS_BUILD_FOR_LOCALEPUCK)
 #
 if(NOT ARGOS_BUILD_FOR_SIMULATOR)
   find_package(Pthreads)
-  if(NOT PTHREADS_FOUND)  
+  if(NOT PTHREADS_FOUND)
     message(FATAL_ERROR "Required library pthreads not found.")
   endif(NOT PTHREADS_FOUND)
   add_definitions(${PTHREADS_DEFINITIONS})
