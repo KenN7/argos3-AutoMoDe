@@ -57,11 +57,12 @@ if ! [[ "$SCORE" =~ ^[-+0-9.e]+$ ]] ; then
     error "Output is not a number"
 fi
 
+#echo $OUTPUT >> /home/khasselmann/output.log
 #TIME=$(echo "$end - $start" | bc -l)
 
 echo " score $SCORE" >> $FSM_LOG
 
 # Print score!
-echo "$SCORE"
+echo "-$SCORE"
 
 exit 0
