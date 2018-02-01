@@ -16,11 +16,11 @@ parameterFile = "./grammar_no_gian.txt"
 dependencyFile = "./depend_config.txt"
 
 ## Directory where the programs will be run.
-execDir = "./exec2"
+execDir = "./exec5"
 
 ## Directory where tuning instances are located, either absolute path or
 ## relative to current directory.
-trainInstancesDir = "./exST"
+trainInstancesDir = "./exAG"
 
 #The maximum total budget for the runs of targetRunner
 maxExperiments = 200000
