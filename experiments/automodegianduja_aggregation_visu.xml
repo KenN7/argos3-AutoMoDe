@@ -30,8 +30,8 @@
       </actuators>
       <sensors>
 		    <epuck_proximity implementation="default" show_rays="false" noise_level="0.05" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/proximity_sensor.xml"/>
-        <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" nois_std_deviation="1.5" loss_probability="0.8" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/range_and_bearing_sensor.xml"/>
-		    <epuck_light implementation="default" show_rays="true" noise_level="0.05" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/light_sensor.xml"/>
+        <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" nois_std_deviation="1.5" loss_probability="0.80" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/range_and_bearing_sensor.xml"/>
+		    <epuck_light implementation="default" show_rays="false" noise_level="0.05" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/light_sensor.xml"/>
 		    <epuck_ground implementation="rot_z_only" noise_level="0.1" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/ground_sensor.xml"/>
 		    <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
@@ -48,8 +48,14 @@
   <floor id="floor" source="loop_functions" pixels_per_meter="300"/>
 
     <!-- Change the light here -->
-	<light id="light0" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="0.0" medium="leds"/>
-
+    <!-- <distribute>
+         <position method="uniform" min="-1,-1,0.4" max="1,1,0.4" />
+         <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
+         <entity quantity="1" max_trials="100">
+            <light id="light" intensity="0.8" color="yellow" medium="leds"/>
+         </entity>
+    </distribute> -->
+    <light id="light0" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="0.0" medium="leds"/>
 
   <!--Dodecagonal arena with side of length .66-->
   <box id="wall_1" size="0.01,.66,0.08" movable="false">
@@ -92,7 +98,7 @@
   <!-- ********** -->
   <!-- * E-Puck * -->
   <!-- ********** -->
-  <!-- <distribute>
+  <distribute>
     <position method="uniform" min="-1,-1,0" max="1,1,0" />
     <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
     <entity quantity="20" max_trials="100">
@@ -100,7 +106,7 @@
         <controller config="automode" />
       </e-puck>
     </entity>
-  </distribute> -->
+  </distribute>
 
   </arena>
 
