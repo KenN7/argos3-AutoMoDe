@@ -70,6 +70,7 @@ argos::CColor ChocolateSPCLoopFunction::GetFloorColor(const argos::CVector2& c_p
 
 void ChocolateSPCLoopFunction::PostExperiment() {
   m_fObjectiveFunction = ComputeObjectiveFunction();
+  LOG << "Score " << m_fObjectiveFunction << std::endl;
 }
 
 /****************************************/
@@ -101,16 +102,17 @@ Real ChocolateSPCLoopFunction::ComputeObjectiveFunction() {
             cEpuckPosition.Set(pcEpuck->GetEmbodiedEntity().GetOriginAnchor().Position.GetX(),
                                pcEpuck->GetEmbodiedEntity().GetOriginAnchor().Position.GetY());
             if(IsOnSquareArea(cEpuckPosition)){
-                fDistanceToRandomPoint = (cRandomPoint - cEpuckPosition).Length();
+                fDistanceToRandomPoint = Distance(cRandomPoint, cEpuckPosition);
                 if(fDistanceToRandomPoint < fMinDistanceOnSquare){
                     fMinDistanceOnSquare = fDistanceToRandomPoint;
                 }
             }
         }
-
+        LOG << fMinDistanceOnSquare << std::endl;
         dA += fMinDistanceOnSquare;
     }
     dA /= m_unNumberPoints;
+    LOG << "mean " << dA << std::endl;
 
     // Black circle area
     for(UInt32 i = 0; i < m_unNumberPoints; ++i){
@@ -129,11 +131,12 @@ Real ChocolateSPCLoopFunction::ComputeObjectiveFunction() {
                 }
             }
         }
-
+        LOG << fMinDistanceOnCircle << std::endl;
         dP += fMinDistanceOnCircle;
     }
 
     dP /= m_unNumberPoints;
+    LOG << "mean " << dP << std::endl;
     Real performance = (dA/m_fDoptA) + (dP/m_fDoptP);
 
     return performance;

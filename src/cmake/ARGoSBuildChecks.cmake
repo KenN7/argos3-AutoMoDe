@@ -1,7 +1,7 @@
 #
 # Find the ARGoS package
 #
-if(ARGOS_BUILD_FOR_SIMULATOR)
+if(ARGOS_BUILD_FOR_SIMULATOR OR ARGOS_BUILD_FOR_PSEUDO_REALITY)
   find_package(PkgConfig)
   pkg_check_modules(ARGOS REQUIRED argos3_simulator)
   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ARGOS_PREFIX}/share/argos3/cmake)
@@ -19,6 +19,7 @@ endif()
 # Check for Lua 5.1
 #
 IF(NOT ARGOS_BUILD_FOR_EPUCK)
+  MESSAGE("LOL")
   find_package(Lua51)
   if(LUA51_FOUND)
     include_directories(${LUA_INCLUDE_DIR})
@@ -45,7 +46,7 @@ endif(ARGOS_BUILD_FOR_LOCALEPUCK)
 #
 if(NOT ARGOS_BUILD_FOR_SIMULATOR)
   find_package(Pthreads)
-  if(NOT PTHREADS_FOUND)  
+  if(NOT PTHREADS_FOUND)
     message(FATAL_ERROR "Required library pthreads not found.")
   endif(NOT PTHREADS_FOUND)
   add_definitions(${PTHREADS_DEFINITIONS})

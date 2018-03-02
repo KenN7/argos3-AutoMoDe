@@ -16,9 +16,6 @@
 
 void AutoMoDeLoopFunctions::Init(argos::TConfigurationNode& t_tree) {
   m_pcRng = CRandom::CreateRNG("argos");
-  for (UInt8 i = 0; i < 1; i++) {
-    std::cout << m_pcRng->Uniform(CRange<UInt32>(0,100)) << std::endl;
-  }
   TConfigurationNode cParametersNode;
   try {
     cParametersNode = GetNode(t_tree, "params");

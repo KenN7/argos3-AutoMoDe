@@ -139,6 +139,7 @@ namespace argos {
 		 */
 		if (m_pcWheelsActuator != NULL) {
 			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetLeftWheelVelocity(),m_pcRobotState->GetRightWheelVelocity());
+			LOG << m_pcRobotState->GetLeftWheelVelocity() << " " <<m_pcRobotState->GetRightWheelVelocity() << std::endl;
 		}
 
 		/*

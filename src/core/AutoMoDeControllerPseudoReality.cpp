@@ -25,11 +25,6 @@ namespace argos {
 		m_bFiniteStateMachineGiven = false;
 		m_bPseudoRealitySet = false;
 		m_fLossProbability = 0.85;
-		/* Intializes random number generator */
-		time_t t;
-    //srand((unsigned) time(&t));
-    //argos::CRandom::CreateCategory("random", rand());
-    //m_pcRngRandom = argos::CRandom::CreateRNG("random");
 	}
 
 	/****************************************/
@@ -112,6 +107,9 @@ namespace argos {
 			data[3] = 0;
 			m_pcRabActuator->SetData(data);
 		}
+
+		argos::CRandom::CreateCategory("pseudo-reality", 0);
+    m_pcRngPseudoReality = argos::CRandom::CreateRNG("pseudo-reality");
 	}
 
 	/****************************************/
@@ -122,42 +120,42 @@ namespace argos {
 		 * Setting up the pseudo reality.
 		 */
 		if (!m_bPseudoRealitySet) {
-			Real fRandomFactor = m_pcRobotState->GetRandomNumberGenerator()->Uniform(CRange<Real>(0, 1.0));
-
+			Real fRandomFactor = m_pcRngPseudoReality->Uniform(CRange<Real>(0, 1.0));
+		//	LOG << fRandomFactor << std::endl;
 			//Range and Bearing range
-	    m_unRabRangeTransfoFunction = m_pcRobotState->GetRandomNumberGenerator()->Bernoulli(0.5);
+	    m_unRabRangeTransfoFunction = m_pcRngPseudoReality->Bernoulli(0.5);
 	    if (m_fRangeDistributionPower != 0)
 	      m_fAlphaRabRange = pow(fRandomFactor, m_fRangeDistributionPower);
 	    else
 	      m_fAlphaRabRange = 0;
-	    LOG << " rab range " << m_fAlphaRabRange << std::endl;
+	    //LOG << " rab range " << m_fAlphaRabRange << std::endl;
 
 			//Range and Bearing bearing
 	    m_cRabBearingTruncNormDist = TruncNormalDistr(m_fBearingTruncDistrMean, m_fBearingTruncDistrSd, -m_fBearingTruncDistrLimit, m_fBearingTruncDistrLimit);
 
 			// Range and Bearing loss probability
-	    Real fLoosProbabilityIncrement = m_pcRobotState->GetRandomNumberGenerator()->Uniform(CRange<Real>(m_fLossProbaLowerBound, m_fLossProbaUpperBound));
+	    Real fLoosProbabilityIncrement = m_pcRngPseudoReality->Uniform(CRange<Real>(m_fLossProbaLowerBound, m_fLossProbaUpperBound));
 	    m_fLossProbability = m_fLossProbability + fLoosProbabilityIncrement;
-	    LOG << " loss proba " << m_fLossProbability << std::endl;
+	  //  LOG << " loss proba " << m_fLossProbability << std::endl;
 
 			// Wheels transformation
-			m_unLeftWheelTransfoFunction = m_pcRobotState->GetRandomNumberGenerator()->Bernoulli(0.5);
-			m_unRightWheelTransfoFunction = m_pcRobotState->GetRandomNumberGenerator()->Bernoulli(0.5);
+			m_unLeftWheelTransfoFunction = m_pcRngPseudoReality->Bernoulli(0.5);
+			m_unRightWheelTransfoFunction = m_pcRngPseudoReality->Bernoulli(0.5);
 
 			m_fAlphaWheels = pow(fRandomFactor, m_fWheelsDistributionPower);
 			m_fAlphaWheels = m_fAlphaWheels * m_fWheelsMaxAlpha;
-			LOG << " wheels " << m_fAlphaWheels << std::endl;
+			//LOG << " wheels " << m_fAlphaWheels << std::endl;
 
-			LOG << " prox ";
+			//LOG << " prox ";
 			for(size_t i=0; i<8; i++) {
-				m_unProxiTransfo[i] = m_pcRobotState->GetRandomNumberGenerator()->Bernoulli(0.5);
+				m_unProxiTransfo[i] = m_pcRngPseudoReality->Bernoulli(0.5);
 				if (m_fProxiDistributionPower != 0)
-					m_fAlphaProxi[i] = pow(m_pcRobotState->GetRandomNumberGenerator()->Uniform(CRange<Real>(0,1.0)), m_fProxiDistributionPower);
+					m_fAlphaProxi[i] = pow(m_pcRngPseudoReality->Uniform(CRange<Real>(0,1.0)), m_fProxiDistributionPower);
 				else
 					m_fAlphaProxi[i] = 0;
-				LOG << m_fAlphaProxi[i] << " ";
+				//LOG << m_fAlphaProxi[i] << " ";
 			}
-			LOG << std::endl;
+			//LOG << std::endl;
 
 			m_bPseudoRealitySet = true;
 		}
@@ -168,18 +166,14 @@ namespace argos {
 		if(m_pcRabSensor != NULL){
 			const CCI_EPuckRangeAndBearingSensor::TPackets& packets = m_pcRabSensor->GetPackets();
 			CCI_EPuckRangeAndBearingSensor::TPackets newPackets = m_pcRabSensor->GetPackets();
-			Real fRandNumber;
 			UInt32 i = 0;
 			while (i < newPackets.size()) {
-				if (packets[i]->Data[0] != m_unRobotID) {
-					fRandNumber = m_pcRobotState->GetRandomNumberGenerator()->Uniform(CRange<Real>(0,1.0));
-					if (fRandNumber >= m_fLossProbability) {
-						newPackets[i]->Range = TransformationFunction(packets[i]->Range, m_unRabRangeTransfoFunction, 100, m_fAlphaRabRange);
-						newPackets[i]->Bearing = packets[i]->Bearing + CRadians((m_cRabBearingTruncNormDist()*3.1415)/180);
-						i++;
-					} else {
-						newPackets.erase(newPackets.begin() + i);
-					}
+				if (!m_pcRobotState->GetRandomNumberGenerator()->Bernoulli(m_fLossProbability)) {
+					newPackets[i]->Range = TransformationFunction(packets[i]->Range, m_unRabRangeTransfoFunction, 100, m_fAlphaRabRange);
+					newPackets[i]->Bearing = packets[i]->Bearing + CRadians((m_cRabBearingTruncNormDist()*3.1415)/180);
+					i++;
+				} else {
+					newPackets.erase(newPackets.begin() + i);
 				}
 			}
 			m_pcRobotState->SetRangeAndBearingMessages(newPackets);
@@ -210,17 +204,16 @@ namespace argos {
 		 * 3. Update Actuators
 		 */
 		if (m_pcWheelsActuator != NULL) {
-			SInt8 signLeft = 1, signRight = 1;
+			Real signLeft = 1.0, signRight = 1.0;
 			Real fLeftWheelSpeed = m_pcRobotState->GetLeftWheelVelocity();
 			Real fRightWheelSpeed = m_pcRobotState->GetRightWheelVelocity();
       if (fLeftWheelSpeed < 0.0) {
-        signLeft = -1;
+        signLeft = -1.0;
       }
       if (fRightWheelSpeed < 0.0) {
-        signRight = -1;
+        signRight = -1.0;
       }
-			m_pcWheelsActuator->SetLinearVelocity(signLeft * TransformationFunction(abs(fLeftWheelSpeed), m_unLeftWheelTransfoFunction, 16, m_fAlphaWheels), signRight * TransformationFunction(abs(fRightWheelSpeed), m_unRightWheelTransfoFunction, 16, m_fAlphaWheels));
-			//m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetLeftWheelVelocity(),m_pcRobotState->GetRightWheelVelocity());
+			m_pcWheelsActuator->SetLinearVelocity(signLeft * TransformationFunction(fabs(fLeftWheelSpeed), m_unLeftWheelTransfoFunction, 16, m_fAlphaWheels), signRight * TransformationFunction(fabs(fRightWheelSpeed), m_unRightWheelTransfoFunction, 16, m_fAlphaWheels));
 		}
 
 		/*
@@ -230,7 +223,6 @@ namespace argos {
 			m_pcRabSensor->ClearPackets();
 		}
 		m_unTimeStep++;
-
 	}
 
 	/****************************************/
@@ -303,12 +295,16 @@ namespace argos {
 
  Real AutoMoDeControllerPseudoReality::TransformationFunction(Real f_origin, UInt8 un_function, Real f_max, Real f_alpha) {
 	  Real fNew;
-	  if (un_function == 0 || f_alpha == 0.0f) {
-	    fNew =  ( ((1 - f_alpha) * (f_origin / f_max)) + ( f_alpha * (pow((f_origin/f_max),2)) ) ) * f_max;
-	  }
-	  else {
-	    fNew =  ( ( -(1 - f_alpha) + sqrt( pow(1 - f_alpha, 2) + (4 * f_alpha * (f_origin/f_max))  ) ) / (2 * f_alpha) ) * f_max;
-	  }
+		if (f_alpha == 0.0f) {
+			return f_origin;
+		} else {
+		  if (un_function == 0) {
+		    fNew =  ( ((1 - f_alpha) * (f_origin / f_max)) + ( f_alpha * (pow((f_origin/f_max),2)) ) ) * f_max;
+		  }
+		  else {
+		    fNew =  ( ( -(1 - f_alpha) + sqrt( pow(1 - f_alpha, 2) + (4 * f_alpha * (f_origin/f_max))  ) ) / (2 * f_alpha) ) * f_max;
+		  }
+		}
 	  return Max(0.0, fNew);
 	}
 

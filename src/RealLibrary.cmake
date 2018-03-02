@@ -2,6 +2,8 @@
 include_directories(${CMAKE_SOURCE_DIR} ${ARGOS_INCLUDE_DIRS})
 link_directories(${ARGOS_LIBRARY_DIRS})
 
+MESSAGE("REALITY")
+
 # Headers
 set(AUTOMODE_HEADERS
 	core/AutoMoDeController.h

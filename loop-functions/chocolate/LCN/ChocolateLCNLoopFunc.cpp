@@ -61,9 +61,6 @@ void ChocolateLCNLoopFunction::PostExperiment() {
 /****************************************/
 
 Real ChocolateLCNLoopFunction::GetObjectiveFunction() {
-  for (UInt8 i = 0; i < 1; i++) {
-    std::cout << m_pcRng->Uniform(CRange<UInt32>(0,100)) << std::endl;;
-  }
   return m_fObjectiveFunction;
 }
 
@@ -72,10 +69,14 @@ Real ChocolateLCNLoopFunction::GetObjectiveFunction() {
 
 void ChocolateLCNLoopFunction::AddNeighs(std::vector<CNetAgent> &agents, std::vector<CNetAgent>::iterator ag) {
 	for (std::vector<CNetAgent>::iterator neigh = agents.begin(); neigh != agents.end(); ++neigh) {
-		if (neigh->unClusterID != 0)
-         continue;
-		if ( Distance(ag->cPosition, neigh->cPosition) < m_fCommunicationDistance ) {
+		if (neigh->unClusterID != 0){
+      continue;
+    }
+		if ( Distance(ag->cPosition, neigh->cPosition) < m_fCommunicationDistance) {
 			neigh->unClusterID = ag->unClusterID;
+      // LOG << ag->strRobotID << " " << neigh->strRobotID << " (grp " << ag->unClusterID << ")" << std::endl;
+      // LOG << ag->cPosition << " " << neigh->cPosition << std::endl;
+      // LOG << Distance(ag->cPosition, neigh->cPosition) << " " << m_fCommunicationDistance << std::endl;
 			AddNeighs(agents, neigh);
 		}
 	}
@@ -95,7 +96,7 @@ Real ChocolateLCNLoopFunction::ComputeObjectiveFunction() {
      CEPuckEntity* pcEpuck = any_cast<CEPuckEntity*> (itEPuckEntity->second);
      cEpuckPosition.Set(pcEpuck->GetEmbodiedEntity().GetOriginAnchor().Position.GetX(),
                         pcEpuck->GetEmbodiedEntity().GetOriginAnchor().Position.GetY());
-     agents.push_back(CNetAgent(cEpuckPosition));
+     agents.push_back(CNetAgent(cEpuckPosition, pcEpuck->GetId()));
   }
 
   /* Cluster the agents in groups with maximum distance MAX_COMM_DIST */
@@ -124,6 +125,8 @@ Real ChocolateLCNLoopFunction::ComputeObjectiveFunction() {
      }
   }
 
+  // LOG << "biggest group ID = " << biggestGroupID << std::endl;
+
   /* create a vector of positions of only the elements in the biggest group */
   /* and at the same time, calculate the extreme coordinates of the group */
   std::vector<CVector2> biggestGroup;
@@ -141,6 +144,11 @@ Real ChocolateLCNLoopFunction::ComputeObjectiveFunction() {
      }
   }
 
+  // for (std::vector<CNetAgent>::iterator ag = agents.begin(); ag != agents.end(); ++ag){
+  //    if (ag->unClusterID == biggestGroupID) {
+  //      LOG << ag->cPosition << std::endl;
+  //    }
+  // }
   /* calculate the bounding box sizes (ranges) */
   //Real width  = max_x - min_x + 2*SENSING_DIST;
   //Real height = max_y - min_y + 2*SENSING_DIST;
@@ -166,6 +174,8 @@ Real ChocolateLCNLoopFunction::ComputeObjectiveFunction() {
   avg = avg / Ceil((width.GetSpan()*height.GetSpan())*m_unNumberPoints);
   /* Multiply the area size (bounding box) by the coverage-ratio */
   Real performance = width.GetSpan() * height.GetSpan() * avg;
+
+  LOG << "Score " << performance << std::endl;
 
   return performance;
 }

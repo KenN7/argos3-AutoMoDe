@@ -42,9 +42,11 @@ class ChocolateLCNLoopFunction : public AutoMoDeLoopFunctions {
       struct CNetAgent {
         CVector2 cPosition;
         UInt32 unClusterID;
+        std::string strRobotID;
 
-        CNetAgent(CVector2 c_position) {
+        CNetAgent(CVector2 c_position, std::string str_robot_id) {
           cPosition = c_position;
+          strRobotID = str_robot_id;
           unClusterID = 0;
         }
       };

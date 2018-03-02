@@ -80,6 +80,7 @@ namespace argos {
 		}
 
 		if (m_pcCurrentBehaviour->IsOperational()) {
+			LOG << "[" << m_pcRobotDAO->GetRobotIdentifier() << "]  " << m_pcCurrentBehaviour->GetLabel() << std::endl;
 			m_pcCurrentBehaviour->ControlStep();
 		} else {
 			m_pcCurrentBehaviour->ResumeStep();

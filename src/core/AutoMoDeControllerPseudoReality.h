@@ -208,6 +208,8 @@ namespace argos{
 			CCI_EPuckOmnidirectionalCameraSensor* m_pcCameraSensor;
 
 			bool m_bFiniteStateMachineGiven;
+
+			CRandom::CRNG* m_pcRngPseudoReality;
 	};
 }
 

@@ -18,7 +18,7 @@
 #include "./core/AutoMoDeFiniteStateMachine.h"
 #include "./core/AutoMoDeFsmBuilder.h"
 #include "./core/AutoMoDeLoopFunctions.h"
-#include "./core/AutoMoDeControllerPseudoReality.h"
+#include "./core/AutoMoDeController.h"
 
 using namespace argos;
 
@@ -43,7 +43,6 @@ int main(int n_argc, char** ppch_argv) {
 	std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
 	UInt32 unSeed = 0;
-	std::string strPseudoRealityDescription = "";
 
 	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
 
@@ -71,7 +70,6 @@ int main(int n_argc, char** ppch_argv) {
 		// Configure the command line options
 		CARGoSCommandLineArgParser cACLAP;
 		cACLAP.AddFlag('r', "readable-fsm", "", bReadableFSM);
-		cACLAP.AddArgument<std::string>('p', "pseudo-reality", "pseudo reality description file", strPseudoRealityDescription);
 		cACLAP.AddArgument<UInt32>('s', "seed", "", unSeed);
 
 		// Parse command line without taking the configuration of the FSM into account
@@ -82,6 +80,7 @@ int main(int n_argc, char** ppch_argv) {
 		switch(cACLAP.GetAction()) {
     	case CARGoSCommandLineArgParser::ACTION_RUN_EXPERIMENT: {
 				CDynamicLoading::LoadAllLibraries();
+				CDynamicLoading::LoadLibrary("/usr/local/lib/pseudo-reality/libargos3plugin_pseudo_reality_epuck.so");
 				cSimulator.SetExperimentFileName(cACLAP.GetExperimentConfigFile());
 
 				// Creation of the finite state machine.
@@ -97,7 +96,6 @@ int main(int n_argc, char** ppch_argv) {
 
 				// Setting random seed. Only works with modified version of ARGoS3.
 				cSimulator.SetRandomSeed(unSeed);
-				std::cout << "USING SEED " << unSeed << std::endl;
 				cSimulator.LoadExperiment();
 
 				// Duplicate the finite state machine and pass it to all robots.
@@ -107,9 +105,8 @@ int main(int n_argc, char** ppch_argv) {
 					AutoMoDeFiniteStateMachine* pcPersonalFsm = new AutoMoDeFiniteStateMachine(pcFiniteStateMachine);
 					vecFsm.push_back(pcPersonalFsm);
 					try {
-						AutoMoDeControllerPseudoReality& cController = dynamic_cast<AutoMoDeControllerPseudoReality&> (pcEntity->GetController());
+						AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
 						cController.SetFiniteStateMachine(pcPersonalFsm);
-						cController.SetPseudoReality(strPseudoRealityDescription);
 					} catch (std::exception& ex) {
 						LOGERR << "Error while casting: " << ex.what() << std::endl;
 					}
@@ -118,7 +115,6 @@ int main(int n_argc, char** ppch_argv) {
 				cSimulator.Execute();
 
 				// Retrieval of the score of the swarm driven by the Finite State Machine
-
 				AutoMoDeLoopFunctions& cLoopFunctions = dynamic_cast<AutoMoDeLoopFunctions&> (cSimulator.GetLoopFunctions());
 				Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
 				std::cout << "Score " << fObjectiveFunction << std::endl;

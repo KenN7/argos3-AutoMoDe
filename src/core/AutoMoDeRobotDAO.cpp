@@ -19,7 +19,7 @@ namespace argos {
 		m_pcRng = CRandom::CreateRNG("argos");
 		m_pcRabMessageBuffer = AutoMoDeRabBuffer();
 		m_pcRabMessageBuffer.SetTimeLife(10);
-		m_fMaxVelocity = 10;
+		m_fMaxVelocity = 16;
 		m_fLeftWheelVelocity = 0;
 		m_fRightWheelVelocity = 0;
 	}
@@ -101,6 +101,7 @@ namespace argos {
 		CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
 		m_unNumberNeighbors = 0;
 		for (it = s_packets.begin(); it < s_packets.end(); ++it) {
+		//	std::cout << "DAO " << (*it)->Range << " " << (*it)->Bearing << " " << (*it)->Data[0] << std::endl;
 			if ((*it)->Data[0] != m_unRobotIdentifier) {
 				if (mapRemainingMessages.find((*it)->Data[0]) != mapRemainingMessages.end()) {  // If ID not in map, add message.
 					mapRemainingMessages[(*it)->Data[0]] = (*it);

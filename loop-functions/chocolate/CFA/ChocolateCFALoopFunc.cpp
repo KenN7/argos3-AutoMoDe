@@ -72,10 +72,10 @@ argos::CColor ChocolateCFALoopFunction::GetFloorColor(const argos::CVector2& c_p
 /****************************************/
 
 void ChocolateCFALoopFunction::PostExperiment() {
-  m_fObjectiveFunction = ((2*1.25) - GetExpectedDistance()) * 100;
+  m_fObjectiveFunction = GetExpectedDistance();
   if (m_fObjectiveFunction < 0)
     m_fObjectiveFunction = 0;
-  LOG << m_fObjectiveFunction << std::endl;
+  LOG << "Score " << m_fObjectiveFunction << std::endl;
 }
 
 /****************************************/
@@ -140,7 +140,7 @@ Real ChocolateCFALoopFunction::GetExpectedDistance() {
 
   for (UInt32 i = 0; i < unNumberTrials; ++i) {
     CVector2 cRandomPoint = GetRandomPointInArena();
-    fTotalDistance = GetClosestEpuckDistanceFromPoint(cRandomPoint);
+    fTotalDistance += GetClosestEpuckDistanceFromPoint(cRandomPoint);
   }
 
   fExpectedDistance = fTotalDistance / unNumberTrials;
