@@ -1,4 +1,4 @@
-(int)/*
+/*
  * File: AutoMoDeConditionMessageCount.cpp
  *
  */
