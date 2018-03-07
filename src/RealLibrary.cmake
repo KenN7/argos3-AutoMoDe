@@ -60,5 +60,9 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionInvertedMessageCount.cpp
 	modules/AutoMoDeConditionFixedProbability.cpp)
 
-add_executable(automode ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
+add_executable(automode
+	/home/ken/depots/argos3-iridia-tracking-system-2/src/plugins/robots/e-puck/real_robot/real_epuck_its.h
+	/home/ken/depots/argos3-iridia-tracking-system-2/src/plugins/robots/e-puck/real_robot/real_epuck_its_main.cpp
+	${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
+
 target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)

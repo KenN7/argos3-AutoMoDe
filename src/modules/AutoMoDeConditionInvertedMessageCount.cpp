@@ -44,7 +44,7 @@
 
 	bool AutoMoDeConditionInvertedMessageCount::Verify() {
 		UInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(1); //TODO add message to param, for now 1 is hardcoded for gianduja
-		Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
+		Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * ((int)m_unParameterXi - (int)unNumberNeighbors))));
 		return EvaluateBernoulliProbability(fProbability);
 	}
 
