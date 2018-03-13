@@ -49,7 +49,7 @@
 
 	bool AutoMoDeConditionInvertedNeighborsCount::Verify() {
 		UInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberNeighbors();
-		Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * ((int)m_unParameterXi - (int)unNumberNeighbors))));
+		Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
 		return EvaluateBernoulliProbability(fProbability);
 	}
 

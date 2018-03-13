@@ -61,8 +61,8 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionFixedProbability.cpp)
 
 add_executable(automode
-	/home/ken/depots/argos3-iridia-tracking-system-2/src/plugins/robots/e-puck/real_robot/real_epuck_its.h
-	/home/ken/depots/argos3-iridia-tracking-system-2/src/plugins/robots/e-puck/real_robot/real_epuck_its_main.cpp
+	/home/ken/depots/iridia-tracking-system/src/plugins/robots/e-puck/real_robot/real_epuck_its.h
+	/home/ken/depots/iridia-tracking-system/src/plugins/robots/e-puck/real_robot/real_epuck_its_main.cpp
 	${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 
 target_link_libraries(automode

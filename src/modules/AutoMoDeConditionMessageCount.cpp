@@ -47,7 +47,7 @@
         // if (unNumberNeighbors > 1) {
         //     LOG << "neighbos sending messages : " << unNumberNeighbors << std::endl;
         // }
-		Real fProbability = (1/(1 + exp(m_fParameterEta * ((int)m_unParameterXi - (int)unNumberNeighbors))));
+		Real fProbability = (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
 		return EvaluateBernoulliProbability(fProbability);
 	}
 
