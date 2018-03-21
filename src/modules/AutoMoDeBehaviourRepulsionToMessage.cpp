@@ -80,7 +80,7 @@ namespace argos {
 			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
-		m_unRepulsiveMessage = 1; //TODO for gianduja we only need this, later maybe we had a parameter
+		m_unRepulsiveMessage = 85; //TODO for gianduja we only need this, later maybe we had a parameter
 
 		// std::map<std::string, Real>::iterator itMes = m_mapParameters.find("brd");
 		// if (itMes != m_mapParameters.end()) {

@@ -43,11 +43,13 @@
 	/****************************************/
 
 	bool AutoMoDeConditionMessageCount::Verify() {
-		UInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(1); //TODO add message to param, for now 1 is hardcoded for gianduja
+		UInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(85); //TODO add message to param, for now 1 is hardcoded for gianduja
         // if (unNumberNeighbors > 1) {
-        //     LOG << "neighbos sending messages : " << unNumberNeighbors << std::endl;
+    LOG << "NeiMess : " << unNumberNeighbors << std::endl;
         // }
 		Real fProbability = (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
+    LOG << "Proba : " << fProbability << std::endl;
+    
 		return EvaluateBernoulliProbability(fProbability);
 	}
 

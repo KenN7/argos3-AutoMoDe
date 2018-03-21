@@ -101,10 +101,12 @@ namespace argos {
 					 * 3. Update current behaviour
 					 */
 					if ((*it)->Verify()) {
+						LOG << "Condition true: " << (*it)->GetLabel() << std::endl;
 						m_mapConditionsChecked.insert(std::pair<AutoMoDeCondition*, bool>((*it), true));
 						m_unCurrentBehaviourIndex = (*it)->GetExtremity();
 						m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
 						m_bEnteringNewState = true;
+						LOG << "Going to: " << m_pcCurrentBehaviour->GetLabel() << std::endl;
 						break;
 					} else {
 						m_mapConditionsChecked.insert(std::pair<AutoMoDeCondition*, bool>((*it), false));

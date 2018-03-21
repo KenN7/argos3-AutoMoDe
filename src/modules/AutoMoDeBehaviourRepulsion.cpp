@@ -81,6 +81,9 @@ namespace argos {
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("rep");
 		if (it != m_mapParameters.end()) {
 			m_unRepulsionParameter = it->second;
+			if (m_bBroadcastStateAndMessage == 1) {
+				m_bBroadcastStateAndMessage = 85;
+			}
 		} else {
 			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
