@@ -31,7 +31,7 @@
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
 
 		if (readings.Left >= m_fGroundThreshold || readings.Center >= m_fGroundThreshold || readings.Right >= m_fGroundThreshold) {
-          LOG << "white floor" << " " << readings.Left << " " << readings.Center << " " << readings.Right << std::endl;
+          //LOG << "white floor" << " " << readings.Left << " " << readings.Center << " " << readings.Right << std::endl;
           return EvaluateBernoulliProbability(m_fProbability);
         }
         else {
