@@ -51,7 +51,7 @@ namespace argos {
 	void AutoMoDeBehaviourExploration::Init() {
 		m_unTurnSteps = 0;
 		m_eExplorationState = RANDOM_WALK;
-		m_fWheelSpeed = 10;
+		m_fWheelSpeed = 12;
 		m_fProximityThreshold = 0.05;
 		m_bLocked = false;
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("rwm");
