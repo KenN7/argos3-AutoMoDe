@@ -40,11 +40,14 @@ def main(p):
             print("Exec folder already exists, continuing..")
             continue
 
-        subprocess.check_call("""/opt/openmpi/bin/mpirun -x
+        command = """/opt/openmpi/bin/mpirun -x
             OMPI_MCA_plm_rsh_disable_qrsh -np 1
             irace --exec-dir={execdir} --parallel {nb_slaves} --seed {seed}
             --mpi 1 -s {scenario}""".format(\
-            execdir=execdir, nb_slaves=slaves, seed=seed, scenario=sce), shell=True)
+            execdir=execdir, nb_slaves=slaves, seed=seed, scenario=sce)
+
+        print(command)
+        subprocess.check_call(command, shell=True)
 
         #/opt/openmpi/bin/mpirun -x OMPI_MCA_plm_rsh_disable_qrsh -np 1 irace --exec-dir=$EXECDIR --parallel $NB_SLAVES --seed $RUNSEED --mpi 1 -s scenario_desi_nogian.txt
 
