@@ -32,7 +32,7 @@ def main(p):
 
     for i in args.nbiterations:
         seed = seed+random.randint(1,10)
-        execdir = "{}-{:02d}".format(args.execdir,i)
+        execdir = "{}-{:02d}".format(args.dir,i)
         print("Starting new iteration.. N={},D={},S={}..".format(i,execdir,seed))
         try:
             os.mkdir(execdir)
