@@ -40,10 +40,10 @@ def main(p):
             print("Exec folder already exists, continuing..")
             continue
 
-        command = """/opt/openmpi/bin/mpirun -x
-            OMPI_MCA_plm_rsh_disable_qrsh -np 1
-            irace --exec-dir={execdir} --parallel {nb_slaves} --seed {seed}
-            --mpi 1 -s {scenario}""".format(\
+        command = "/opt/openmpi/bin/mpirun -x\
+            OMPI_MCA_plm_rsh_disable_qrsh -np 1\
+            irace --exec-dir={execdir} --parallel {nb_slaves} --seed {seed}\
+            --mpi 1 -s {scenario}".format(\
             execdir=execdir, nb_slaves=slaves, seed=seed, scenario=sce)
 
         print(command)
