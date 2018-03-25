@@ -47,7 +47,8 @@ def main(p):
             execdir=execdir, nb_slaves=slaves, seed=seed, scenario=sce)
 
         print(command)
-        subprocess.check_call(command, shell=True)
+        with open(os.path.join(execdir,'irace.stdout'), 'w') as f, open(os.path.join(execdir,'irace.stderr'), 'w') as f2:
+            subprocess.check_call(command, stdout=f, stderr=f2, shell=True)
 
         #/opt/openmpi/bin/mpirun -x OMPI_MCA_plm_rsh_disable_qrsh -np 1 irace --exec-dir=$EXECDIR --parallel $NB_SLAVES --seed $RUNSEED --mpi 1 -s scenario_desi_nogian.txt
 
