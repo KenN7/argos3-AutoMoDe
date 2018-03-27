@@ -64,9 +64,9 @@
 	bool AutoMoDeConditionBlackFloor::Verify() {
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
 
-    if (EvaluateBernoulliProbability(0.0002)) {
-      return true;
-    }
+    // if (EvaluateBernoulliProbability(0.0002)) {
+    //   return true;
+    // }
 
   	if ( (readings.Right <= m_fGroundThreshold) || (readings.Left <= m_fGroundThreshold) || (readings.Right <= m_fGroundThreshold) ) {
           //LOG << "black floor" << " " << readings.Left << " " << readings.Center << " " << readings.Right << std::endl;
