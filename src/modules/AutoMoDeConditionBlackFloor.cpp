@@ -64,7 +64,7 @@
 	bool AutoMoDeConditionBlackFloor::Verify() {
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
 
-    if (EvaluateBernoulliProbability(0.0002)) {
+    if (EvaluateBernoulliProbability(0.001)) {
       return true;
     }
 
