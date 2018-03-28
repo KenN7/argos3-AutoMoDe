@@ -65,22 +65,22 @@ namespace argos {
 	 	//float sum[3] = {0.0,0.0,0.0};
 		int counter[2] = {0,0};
 		for (it = m_deqGroundInput.begin(); it != m_deqGroundInput.end(); it++) {
-			if (it->Left < 0.005) {
+			if (it->Left < 0.03) {
 				counter[0] += 1;
 			}
-			else if (it->Left > 0.98) {
+			else if (it->Left > 0.92) {
 				counter[1] += 1;
 			}
-			if (it->Center < 0.005) {
+			if (it->Center < 0.03) {
 				counter[0] +=1;
 			}
-			else if (it->Center > 0.98) {
+			else if (it->Center > 0.92) {
 				counter[1] += 1;
 			}
-			if (it->Right < 0.005) {
+			if (it->Right < 0.03) {
 				counter[0] +=1;
 			}
-			else if (it->Right > 0.98) {
+			else if (it->Right > 0.92) {
 				counter[1] += 1;
 			}
 		}
