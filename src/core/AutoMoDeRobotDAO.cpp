@@ -68,19 +68,19 @@ namespace argos {
 			if (it->Left < 0.005) {
 				counter[0] += 1;
 			}
-			else if (it->Left > 0.92) {
+			else if (it->Left > 0.98) {
 				counter[1] += 1;
 			}
 			if (it->Center < 0.005) {
 				counter[0] +=1;
 			}
-			else if (it->Center > 0.92) {
+			else if (it->Center > 0.98) {
 				counter[1] += 1;
 			}
 			if (it->Right < 0.005) {
 				counter[0] +=1;
 			}
-			else if (it->Right > 0.92) {
+			else if (it->Right > 0.98) {
 				counter[1] += 1;
 			}
 		}
@@ -177,7 +177,7 @@ namespace argos {
 		UInt8 unNumberMessagingNeighbors = 0;
 
 		for (it = sLastPackets.begin(); it != sLastPackets.end(); it++) {
-			if ( ((*it)->Data[0] != (UInt8) GetRobotIdentifier()) && ((*it)->Data[1] == (UInt8) un_message) ) {
+			if ( (UInt8) ((*it)->Data[0] != GetRobotIdentifier()) && ((UInt8) (*it)->Data[1] == un_message) ) {
 				unNumberMessagingNeighbors+=1;
 			}
 		}
