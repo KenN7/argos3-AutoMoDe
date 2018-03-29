@@ -68,19 +68,19 @@ namespace argos {
 			if (it->Left < 0.03) {
 				counter[0] += 1;
 			}
-			else if (it->Left > 0.92) {
+			else if (it->Left > 0.85) {
 				counter[1] += 1;
 			}
 			if (it->Center < 0.03) {
 				counter[0] +=1;
 			}
-			else if (it->Center > 0.92) {
+			else if (it->Center > 0.85) {
 				counter[1] += 1;
 			}
 			if (it->Right < 0.03) {
 				counter[0] +=1;
 			}
-			else if (it->Right > 0.92) {
+			else if (it->Right > 0.85) {
 				counter[1] += 1;
 			}
 		}
