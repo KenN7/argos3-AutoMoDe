@@ -43,7 +43,7 @@
 	/****************************************/
 
 	bool AutoMoDeConditionMessageCount::Verify() {
-		SInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(85); //TODO add message to param, for now 1 is hardcoded for gianduja
+		SInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unParameterMes);
         // if (unNumberNeighbors >= 1) {
         //  LOG << "NeiMess : " << unNumberNeighbors << std::endl;
         // }
@@ -66,9 +66,11 @@
 	void AutoMoDeConditionMessageCount::Init() {
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
 		std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");
-		if ((itEta != m_mapParameters.end()) && (itXi != m_mapParameters.end())) {
+        std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
+		if ( (itEta != m_mapParameters.end()) && (itXi != m_mapParameters.end()) && (itMes != m_mapParameters.end()) ) {
 			m_fParameterEta = itEta->second;
 			m_unParameterXi = itXi->second;
+            m_unParameterMes = itMes->second;
 		} else {
 			LOGERR << "[FATAL] Missing parameter for the following condition:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
