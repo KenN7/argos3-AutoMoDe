@@ -107,11 +107,11 @@ int main(int n_argc, char** ppch_argv) {
 			std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
 			std::cout << strFiniteStateMachineURL << std::endl;
 
-			std::string strBrowser = "firefox \"";
-			strBrowser.append(EncodeURL(strFiniteStateMachineURL));
-			strBrowser.append("\"");
-
-			system(strBrowser.c_str());
+			// std::string strBrowser = "firefox \"";
+			// strBrowser.append(EncodeURL(strFiniteStateMachineURL));
+			// strBrowser.append("\"");
+            //
+			// system(strBrowser.c_str());
 		}
 
 		if (bFsmFileFound) {
@@ -125,11 +125,11 @@ int main(int n_argc, char** ppch_argv) {
 				std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
 				std::cout << strFiniteStateMachineURL << std::endl;
 
-				std::string strBrowser = "firefox \"";
-				strBrowser.append(EncodeURL(strFiniteStateMachineURL));
-				strBrowser.append("\"");
-
-				system(strBrowser.c_str());
+				// std::string strBrowser = "firefox \"";
+				// strBrowser.append(EncodeURL(strFiniteStateMachineURL));
+				// strBrowser.append("\"");
+                //
+				// system(strBrowser.c_str());
 			}
 		 }
 		}
