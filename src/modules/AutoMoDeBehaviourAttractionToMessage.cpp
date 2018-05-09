@@ -76,7 +76,7 @@ namespace argos {
 
 	void AutoMoDeBehaviourAttractionToMessage::Init() {
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("att");
-        std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
+        std::map<std::string, Real>::iterator itMes = m_mapParameters.find("mes");
 		if ( (it != m_mapParameters.end()) && (itMes != m_mapParameters.end()) ) {
 			m_unAttractionParameter = it->second;
             m_unAttractiveMessage = itMes->second;
