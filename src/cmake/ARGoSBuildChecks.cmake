@@ -18,13 +18,13 @@ endif()
 MESSAGE(${ARGOS_INCLUDE_DIRS}" : "${ARGOS_LIBRARY_DIRS})
 
 #
-# Check for Lua 5.1
+# Check for Lua 5.2
 #
 IF(NOT ARGOS_BUILD_FOR_EPUCK)
-  find_package(Lua51)
-  if(LUA51_FOUND)
+  find_package(Lua52)
+  if(LUA52_FOUND)
     include_directories(${LUA_INCLUDE_DIR})
-  endif(LUA51_FOUND)
+  endif(LUA52_FOUND)
 endif (NOT ARGOS_BUILD_FOR_EPUCK)
 
 #
@@ -47,7 +47,7 @@ endif(ARGOS_BUILD_FOR_LOCALEPUCK)
 #
 if(NOT ARGOS_BUILD_FOR_SIMULATOR)
   find_package(Pthreads)
-  if(NOT PTHREADS_FOUND)
+  if(NOT PTHREADS_FOUND)  
     message(FATAL_ERROR "Required library pthreads not found.")
   endif(NOT PTHREADS_FOUND)
   add_definitions(${PTHREADS_DEFINITIONS})

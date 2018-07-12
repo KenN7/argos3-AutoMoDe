@@ -43,12 +43,11 @@ namespace argos {
 			ExplorationState m_eExplorationState;
 			TurnDirection m_eTurnDirection;
 
-			Real m_fWheelSpeed;
 			Real m_fProximityThreshold;
 			CRange<UInt32> m_cRandomStepsRange;
 			UInt8 m_bBroadcastStateAndMessage;
 
-			bool IsObstacleInFront(CCI_EPuckProximitySensor::TReadings s_prox_input);
+			bool IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading);
 	};
 }
 

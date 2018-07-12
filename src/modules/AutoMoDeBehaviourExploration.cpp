@@ -51,8 +51,7 @@ namespace argos {
 	void AutoMoDeBehaviourExploration::Init() {
 		m_unTurnSteps = 0;
 		m_eExplorationState = RANDOM_WALK;
-		m_fWheelSpeed = 12;
-		m_fProximityThreshold = 0.15;
+		m_fProximityThreshold = 0.1;
 		m_bLocked = false;
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("rwm");
 		if (it != m_mapParameters.end()) {
@@ -79,16 +78,14 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourExploration::ControlStep() {
-
 		m_pcRobotDAO->SetRangeAndBearingMessageToSend(m_bBroadcastStateAndMessage);
-
 		switch (m_eExplorationState) {
 			case RANDOM_WALK: {
-				m_pcRobotDAO->SetWheelsVelocity(m_fWheelSpeed, m_fWheelSpeed);
-				if (IsObstacleInFront(m_pcRobotDAO->GetProximityInput())) {
+				m_pcRobotDAO->SetWheelsVelocity(m_pcRobotDAO->GetMaxVelocity(), m_pcRobotDAO->GetMaxVelocity());
+				if (IsObstacleInFront(m_pcRobotDAO->GetProximityReading())) {
 					m_eExplorationState = OBSTACLE_AVOIDANCE;
 					m_unTurnSteps = (m_pcRobotDAO->GetRandomNumberGenerator())->Uniform(m_cRandomStepsRange);
-					CRadians cAngle = SumProximityReadings(m_pcRobotDAO->GetProximityInput()).Angle().SignedNormalize();
+					CRadians cAngle = m_pcRobotDAO->GetProximityReading().Angle.SignedNormalize();
 					if (cAngle.GetValue() < 0) {
 						m_eTurnDirection = LEFT;
 					} else {
@@ -101,11 +98,11 @@ namespace argos {
 				m_unTurnSteps -= 1;
 				switch (m_eTurnDirection) {
 					case LEFT: {
-						m_pcRobotDAO->SetWheelsVelocity(-m_fWheelSpeed, m_fWheelSpeed);
+						m_pcRobotDAO->SetWheelsVelocity(-m_pcRobotDAO->GetMaxVelocity(), m_pcRobotDAO->GetMaxVelocity());
 						break;
 					}
 					case RIGHT: {
-						m_pcRobotDAO->SetWheelsVelocity(m_fWheelSpeed, -m_fWheelSpeed);
+						m_pcRobotDAO->SetWheelsVelocity(m_pcRobotDAO->GetMaxVelocity(), -m_pcRobotDAO->GetMaxVelocity());
 						break;
 					}
 				}
@@ -137,11 +134,9 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeBehaviourExploration::IsObstacleInFront(CCI_EPuckProximitySensor::TReadings s_prox_input) {
-		if (s_prox_input[0].Value >= m_fProximityThreshold ||
-				s_prox_input[1].Value >= m_fProximityThreshold ||
-				s_prox_input[6].Value >= m_fProximityThreshold ||
-				s_prox_input[7].Value >= m_fProximityThreshold) {
+	bool AutoMoDeBehaviourExploration::IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading) {
+		CRadians cAngle = s_prox_reading.Angle;
+		if (s_prox_reading.Value >= m_fProximityThreshold && ((cAngle <= CRadians::PI_OVER_TWO) || (cAngle >= (CRadians::TWO_PI - CRadians::PI_OVER_TWO)))) {
 			return true;
 		}
 		return false;

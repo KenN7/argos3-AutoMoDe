@@ -28,7 +28,7 @@ namespace argos {
 
 		private:
 			Real m_fParameterEta;
-			SInt8 m_unParameterXi;
+			UInt8 m_unParameterXi;
 	};
 }
 

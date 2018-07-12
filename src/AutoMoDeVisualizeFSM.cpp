@@ -97,6 +97,7 @@ int main(int n_argc, char** ppch_argv) {
 				bFsmFileFound = true;
 				nCurrentArgument++;
 				strFsmFile = std::string(ppch_argv[nCurrentArgument]);
+      }
 		}
 
 		AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
@@ -115,7 +116,7 @@ int main(int n_argc, char** ppch_argv) {
 		}
 
 		if (bFsmFileFound) {
-			std::ifstream file(strFsmFile); // pass file name as argment
+			std::ifstream file(strFsmFile.c_str()); // pass file name as argment
 		  std::string linebuffer;
 
 			while (file && getline(file, linebuffer)){

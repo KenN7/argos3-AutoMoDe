@@ -5,11 +5,9 @@ link_directories(${ARGOS_LIBRARY_DIRS})
 # Headers
 set(AUTOMODE_HEADERS
 	core/AutoMoDeController.h
-	core/AutoMoDeRabBuffer.h
 	core/AutoMoDeFiniteStateMachine.h
 	core/AutoMoDeFsmBuilder.h
 	core/AutoMoDeFsmHistory.h
-	core/AutoMoDeRobotDAO.h
 	# Behaviours
 	modules/AutoMoDeBehaviour.h
 	modules/AutoMoDeBehaviourAntiPhototaxis.h
@@ -34,10 +32,8 @@ set(AUTOMODE_HEADERS
 # Sources
 set(AUTOMODE_SOURCES
 	core/AutoMoDeController.cpp
-	core/AutoMoDeRabBuffer.cpp
 	core/AutoMoDeFiniteStateMachine.cpp
 	core/AutoMoDeFsmBuilder.cpp
-	core/AutoMoDeRobotDAO.cpp
 	core/AutoMoDeFsmHistory.cpp
 	# Behaviours
 	modules/AutoMoDeBehaviour.cpp

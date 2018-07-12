@@ -18,7 +18,7 @@
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_proximity_sensor.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_sensor.h>
 
-#include "../core/AutoMoDeRobotDAO.h"
+#include <argos3/demiurge/epuck-dao/EpuckDAO.h>
 
 #include <map>
 
@@ -62,7 +62,7 @@ namespace argos {
 			 * Pointer to the state of the robot. Shared with the controller AutoMoDeController
 			 * and the finite state machine AutoMoDeFiniteStateMachine.
 			 */
-      AutoMoDeRobotDAO* m_pcRobotDAO;
+      EpuckDAO* m_pcRobotDAO;
 
 		public:
 
@@ -168,7 +168,7 @@ namespace argos {
 			/*
 			 * Setter for the shared pointer to the representation of the robot state.
 			 */
-			void SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao);
+			void SetRobotDAO(EpuckDAO* pc_robot_dao);
 	};
 }
 

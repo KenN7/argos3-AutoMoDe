@@ -14,7 +14,7 @@
 #include <argos3/core/utility/math/vector2.h>
 #include <argos3/core/utility/logging/argos_log.h>
 
-#include "../core/AutoMoDeRobotDAO.h"
+#include <argos3/demiurge/epuck-dao/EpuckDAO.h>
 
 #include <map>
 
@@ -54,7 +54,7 @@ namespace argos {
 			/*
 			 * Shared pointer to the state of the robot.
 			 */
-			AutoMoDeRobotDAO* m_pcRobotDAO;
+			EpuckDAO* m_pcRobotDAO;
 
 		public:
 
@@ -133,7 +133,7 @@ namespace argos {
 			/*
 			 * Setter for the pointer to the robot state.
 			 */
-			void SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao);
+			void SetRobotDAO(EpuckDAO* pc_robot_dao);
 
 			/*
 			 * Returns a random value from a Bernoulli distribution.
