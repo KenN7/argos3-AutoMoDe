@@ -44,6 +44,3 @@ include(${CMAKE_SOURCE_DIR}/src/cmake/FindPthreads.cmake)
 #
 add_subdirectory(src)
 
-if(ARGOS_BUILD_FOR_SIMULATOR)
-	add_subdirectory(loop-functions)
-endif(ARGOS_BUILD_FOR_SIMULATOR)

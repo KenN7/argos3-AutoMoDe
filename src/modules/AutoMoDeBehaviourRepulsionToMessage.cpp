@@ -49,13 +49,13 @@ namespace argos {
 		CVector2 sRabVector(0,CRadians::ZERO);
 		CVector2 sProxVector(0,CRadians::ZERO);
 		CVector2 sResultVector(0,CRadians::ZERO);
-		CCI_EPuckRangeAndBearingSensor::SReceivedPacket cRabReading = m_pcRobotDAO->GetAttractionVectorToMessagingNeighbors(m_unAttractionParameter,m_unAttractiveMessage);
+		CCI_EPuckRangeAndBearingSensor::SReceivedPacket cRabReading = m_pcRobotDAO->GetAttractionVectorToMessagingNeighbors(m_unRepulsionParameter,m_unRepulsiveMessage);
 
 		if (cRabReading.Range > 0.0f) {
 			sRabVector = CVector2(cRabReading.Range, cRabReading.Bearing);
 		}
 		sProxVector = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
-		sResultVector = -m_unAttractionParameter*sRabVector - 6*sProxVector;
+		sResultVector = -m_unRepulsionParameter*sRabVector - 6*sProxVector;
 
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);

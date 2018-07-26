@@ -133,13 +133,11 @@ int main(int n_argc, char** ppch_argv) {
 				// system(strBrowser.c_str());
 			}
 		 }
-		}
 	} catch(std::exception& ex) {
     // A fatal error occurred: dispose of data, print error and exit
     LOGERR << ex.what() << std::endl;
     return 1;
-  }
-
+	}
 	/* Everything's ok, exit */
   return 0;
 }
