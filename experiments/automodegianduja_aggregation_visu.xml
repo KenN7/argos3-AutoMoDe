@@ -11,7 +11,7 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/ken/depots/experiments-loop-functions/build/loop-functions/libgianduja_aggregation_loopfunc.so"
+  <loop_functions library="/home/ken/depots/experiments-loop-functions/build//loop-functions/gianduja/libgianduja_aggregation_loopfunc.so"
    label="gianduja_aggregation_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
