@@ -113,7 +113,7 @@ int main(int n_argc, char** ppch_argv) {
 						cController.SetFiniteStateMachine(pcPersonalFsm);
 						cController.SetHistoryFlag(bHistory);
 					} catch (std::exception& ex) {
-						LOGERR << "Error while casting FSM: " << ex.what() << std::endl;
+						//LOGERR << "Error while casting FSM: " << ex.what() << std::endl;
 					}
 				}
 
