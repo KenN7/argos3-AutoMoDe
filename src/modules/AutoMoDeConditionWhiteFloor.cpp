@@ -28,7 +28,7 @@
 	/****************************************/
 
 	bool AutoMoDeConditionWhiteFloor::Verify() {
-    if (m_pcRobotDAO->GetGroundReading() <= m_fGroundThreshold) {
+    if (m_pcRobotDAO->GetGroundReading() >= m_fGroundThreshold) {
       return EvaluateBernoulliProbability(m_fProbability);
     }
     else {
