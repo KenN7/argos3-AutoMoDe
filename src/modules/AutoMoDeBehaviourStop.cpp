@@ -62,10 +62,8 @@ namespace argos {
 	void AutoMoDeBehaviourStop::Init() {
 		std::map<std::string, Real>::iterator itMesa = m_mapParameters.find("brda");
 		std::map<std::string, Real>::iterator itMesb = m_mapParameters.find("brdb");
-		if (itMesa != m_mapParameters.end()) {
+		if ((itMesa != m_mapParameters.end()) && (itMesb != m_mapParameters.end()) ) {
 			m_bBroadcastStateAndMessage = (UInt8)itMesa->second | (m_bBroadcastStateAndMessage & 0xF0 ) ;
-		}
-		else if (itMesb != m_mapParameters.end()) {
 			m_bBroadcastStateAndMessage = (UInt8)itMesb->second | (m_bBroadcastStateAndMessage & 0x0F ) ;
 		}
 		else {
