@@ -44,13 +44,24 @@
 
 	bool AutoMoDeConditionMessageCount::Verify() {
 		SInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unParameterMes);
-        // if (unNumberNeighbors >= 1) {
-        //  LOG << "NeiMess : " << unNumberNeighbors << std::endl;
-        // }
-		Real fProbability = (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
-    //LOG << "Proba : " << fProbability << std::endl;
 
-		return EvaluateBernoulliProbability(fProbability);
+		Real fProbability = (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
+
+        // if (unNumberNeighbors >= 1) {
+        //  LOG << "NeiMess : " << m_unParameterMes << "~~" << unNumberNeighbors << std::endl;
+        // }
+        if (unNumberNeighbors == 0) {
+            return 0;
+        }
+
+        //LOG << "Proba : " << fProbability << std::endl;
+        bool a = EvaluateBernoulliProbability(fProbability);
+        // if (a == 1) {
+        //     LOG << "passed: "<< a  << "Proba : " << fProbability << std::endl;
+        // }
+
+
+		return a;
 	}
 
 	/****************************************/
