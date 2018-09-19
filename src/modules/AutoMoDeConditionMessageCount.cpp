@@ -60,7 +60,6 @@
         //     LOG << "passed: "<< a  << "Proba : " << fProbability << std::endl;
         // }
 
-
 		return a;
 	}
 
