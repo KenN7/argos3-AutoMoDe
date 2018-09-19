@@ -18,7 +18,8 @@ QUEUE=short
 #MACHINE=xeon5410 #rack 2
 #MACHINE=opteron6128 #rack 3
 #MACHINE=opteron6272 #rack 4
-MACHINE=xeon2680 #rack 5
+#MACHINE=xeon2680 #rack 5
+MACHINE=xeon6138 #rack6
 
 MPIRUN=/opt/openmpi/bin/mpirun
 #PARALLEL_ENV=mpich_fu

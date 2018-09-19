@@ -1,0 +1,34 @@
+###################################################### -*- mode: r -*- #####
+## Scenario setup for Iterated Race (iRace).
+############################################################################
+## To use the default value of a parameter of iRace, simply do not set
+## the parameter (comment it out in this file, and do not give any
+## value on the command line).
+
+## File that contains the description of the parameters.
+parameterFile = "./grammar_gian2_0_6s.txt"
+
+## File that contains logical expressions of parameters value that
+## valid configurations should not satisfy.
+#forbiddenFile = "./forbidden_config.txt"
+
+#File that contains the options for parameter dependencies
+dependencyFile = "./depend_config6.txt
+
+## Directory where the programs will be run.
+execDir = "./exec5"
+
+## Directory where tuning instances are located, either absolute path or
+## relative to current directory.
+trainInstancesDir = "./exBAG"
+
+#The maximum total budget for the runs of targetRunner
+maxExperiments = 200000
+
+## Indicates the number of decimal places to be considered for the
+## real parameters.
+digits = 2
+
+
+## END of scenario file
+############################################################################
