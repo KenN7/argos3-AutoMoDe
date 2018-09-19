@@ -13,7 +13,7 @@ parameterFile = "./grammar_gian2_0_6s.txt"
 #forbiddenFile = "./forbidden_config.txt"
 
 #File that contains the options for parameter dependencies
-dependencyFile = "./depend_config6.txt
+dependencyFile = "./depend_config6.txt"
 
 ## Directory where the programs will be run.
 execDir = "./exec5"
