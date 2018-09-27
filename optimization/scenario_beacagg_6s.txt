@@ -6,14 +6,14 @@
 ## value on the command line).
 
 ## File that contains the description of the parameters.
-parameterFile = "./grammar_gian2_0.txt"
+parameterFile = "./grammar_gian2_0_6s.txt"
 
 ## File that contains logical expressions of parameters value that
 ## valid configurations should not satisfy.
 #forbiddenFile = "./forbidden_config.txt"
 
 #File that contains the options for parameter dependencies
-dependencyFile = "./depend_config.txt"
+dependencyFile = "./depend_config6.txt"
 
 ## Directory where the programs will be run.
 execDir = "./exec5"
