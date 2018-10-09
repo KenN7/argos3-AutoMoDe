@@ -11,7 +11,7 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/libgianduja_decision_loopfunc.so"
+  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_decision_loopfunc.so"
    label="gianduja_decision_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
