@@ -53,10 +53,9 @@
         }
 
 		//Real fProbability = (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
-        // if (unNumberNeighbors >= 1) {
+        // if (unNumberNeighbors != 0) {
         //  LOG << "NeiMess : " << m_unParameterMes << "~~" << unNumberNeighbors << std::endl;
         // }
-
 
         if (unNumberNeighbors > m_fParameterEta) {
             return 1;
