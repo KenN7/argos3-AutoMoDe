@@ -17,7 +17,8 @@ function write_state() {
   echo "RWM$INDEX   \"--rwm$INDEX \"  i (1,100) | as.numeric(S$INDEX)==0" >> ${TXT_FILE}
   echo "ATT$INDEX   \"--att$INDEX \"  r (1,5) | as.numeric(S$INDEX) %in% c(4,6)" >> ${TXT_FILE}
   echo "REP$INDEX   \"--rep$INDEX \"  r (1,5) | as.numeric(S$INDEX) %in% c(5,7)" >> ${TXT_FILE}
-  echo "BRD$INDEX   \"--brd$INDEX \"  c (0) | as.numeric(S$INDEX) %in% c(0,1,2,3,4,5)" >> ${TXT_FILE}
+  echo "BRDA$INDEX   \"--brda$INDEX \"  c (0,10) | as.numeric(S$INDEX) %in% c(0,1,2,3,4,5)" >> ${TXT_FILE}
+  echo "BRDB$INDEX   \"--brdb$INDEX \"  c (0,160) | as.numeric(S$INDEX) %in% c(0,1,2,3,4,5)" >> ${TXT_FILE}
   if [ ${INDEX} == 0 ]; then
     echo "NumConnections$INDEX \"--n$INDEX \" i (1,4) | as.numeric(NumStates)>1" >> ${TXT_FILE}
   else
@@ -29,7 +30,7 @@ function write_connection() {
   STATE=$1
   CONNECTION=$2
   create_range STATE
-  echo "N${STATE}x$CONNECTION  \"--n${STATE}x$CONNECTION \" c   ${RANGE} | as.numeric(NumConnections$STATE)>$CONNECTION " >> ${TXT_FILE}
+  echo "N${STATE}x$CONNECTION  \"--n${STATE}x$CONNECTION \" i   (0,3) | as.numeric(NumConnections$STATE)>$CONNECTION " >> ${TXT_FILE}
   echo "C${STATE}x$CONNECTION  \"--c${STATE}x$CONNECTION \" c   (0,1,2,3,4,5) | as.numeric(NumConnections$STATE)>$CONNECTION " >> ${TXT_FILE}
   echo "P${STATE}x$CONNECTION  \"--p${STATE}x$CONNECTION \" r   (0,1) | as.numeric(C${STATE}x$CONNECTION) %in% c(0,1,2,5) " >> ${TXT_FILE}
   echo "B${STATE}x$CONNECTION  \"--p${STATE}x$CONNECTION \" i   (1,10) | as.numeric(C${STATE}x$CONNECTION) %in% c(3) " >> ${TXT_FILE}
