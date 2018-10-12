@@ -11,7 +11,7 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/khasselmann/argos3-AutoMoDe/build/loop-functions/libgianduja_aggregation_2spots_loopfunc.so"
+  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_aggregation_2spots_loopfunc.so"
    label="gianduja_aggregation_2spots_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
@@ -35,7 +35,7 @@
 		    <epuck_ground implementation="rot_z_only" noise_level="0.1" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/ground_sensor.xml"/>
 		    <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
-    <params readable='false' history='false' hist-folder='./fsm_history/' fsm-config="--nstates 1 --s0 1 --brd0 0"/>
+    <params readable='false' history='false' hist-folder='./fsm_history/' fsm-config="--nstates 1 --s0 1 --brda0 0 --brdb0 0"/>
     </automode_controller>
   </controllers>
 
@@ -96,7 +96,7 @@
   <!-- ********** -->
   <!-- * E-Puck * -->
   <!-- ********** -->
-  <!-- <distribute>
+  <distribute>
     <position method="uniform" min="-1,-1,0" max="1,1,0" />
     <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
     <entity quantity="20" max_trials="100">
@@ -104,7 +104,7 @@
         <controller config="automode" />
       </e-puck>
     </entity>
-  </distribute> -->
+  </distribute>
 
   </arena>
 
