@@ -108,7 +108,6 @@ namespace argos {
 			case 7:
 				cNewBehaviour = new AutoMoDeBehaviourRepulsionToMessage();
 				break;
-
 		}
 		cNewBehaviour->SetIndex(unBehaviourIndex);
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);
@@ -201,12 +200,12 @@ namespace argos {
 				case 5:
 					cNewCondition = new AutoMoDeConditionFixedProbability();
 					break;
-				case 6:
-					cNewCondition = new AutoMoDeConditionMessageCount();
-					break;
-				case 7:
-					cNewCondition = new AutoMoDeConditionInvertedMessageCount();
-					break;
+				// case 6:
+				// 	cNewCondition = new AutoMoDeConditionMessageCount();
+				// 	break;
+				// case 7:
+				// 	cNewCondition = new AutoMoDeConditionInvertedMessageCount();
+				// 	break;
 			}
 
 			cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);

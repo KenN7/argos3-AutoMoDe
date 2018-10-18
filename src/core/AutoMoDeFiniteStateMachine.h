@@ -35,8 +35,6 @@
 #include "../modules/AutoMoDeConditionFixedProbability.h"
 #include "../modules/AutoMoDeConditionNeighborsCount.h"
 #include "../modules/AutoMoDeConditionInvertedNeighborsCount.h"
-#include "../modules/AutoMoDeConditionInvertedMessageCount.h"
-#include "../modules/AutoMoDeConditionMessageCount.h"
 
 #include <string>
 #include <ctime>

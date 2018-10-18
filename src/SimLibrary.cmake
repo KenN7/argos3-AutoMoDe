@@ -25,9 +25,10 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeConditionGrayFloor.h
 	modules/AutoMoDeConditionNeighborsCount.h
 	modules/AutoMoDeConditionInvertedNeighborsCount.h
-	modules/AutoMoDeConditionMessageCount.h
-	modules/AutoMoDeConditionInvertedMessageCount.h
-	modules/AutoMoDeConditionFixedProbability.h)
+	# modules/AutoMoDeConditionMessageCount.h
+	# modules/AutoMoDeConditionInvertedMessageCount.h
+	modules/AutoMoDeConditionFixedProbability.h
+	)
 
 # Sources
 set(AUTOMODE_SOURCES
@@ -52,8 +53,8 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionGrayFloor.cpp
 	modules/AutoMoDeConditionNeighborsCount.cpp
 	modules/AutoMoDeConditionInvertedNeighborsCount.cpp
-	modules/AutoMoDeConditionMessageCount.cpp
-	modules/AutoMoDeConditionInvertedMessageCount.cpp
+	# modules/AutoMoDeConditionMessageCount.cpp
+	# modules/AutoMoDeConditionInvertedMessageCount.cpp
 	modules/AutoMoDeConditionFixedProbability.cpp)
 
 
