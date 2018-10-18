@@ -214,7 +214,7 @@ namespace argos {
 
 
 			// Checking for parameters
-			std::string vecPossibleParameters[] = {"p", "w", "m"};
+			std::string vecPossibleParameters[] = {"p", "w", "m", "t"};
 			UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 			for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 				std::string strCurrentParameter = vecPossibleParameters[i];
