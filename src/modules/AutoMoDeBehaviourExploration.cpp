@@ -62,7 +62,7 @@ namespace argos {
 		}
 
 		std::map<std::string, Real>::iterator itMes = m_mapParameters.find("brd");
-		if ( itMesa != m_mapParameters.end() ) {
+		if ( itMes != m_mapParameters.end() ) {
 			//LOG << "message to send: " << itMesa->second << " : " << itMesb->second <<std::endl;
 			m_bBroadcastStateAndMessage = (UInt8)itMes->second ;
 		}

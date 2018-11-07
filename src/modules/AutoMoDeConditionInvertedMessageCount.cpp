@@ -62,7 +62,7 @@
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
         std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");
         std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
-		if ( (itEta != m_mapParameters.end()) && (itMes != m_mapParameters.end()) ) && (itXi != m_mapParameters.end()) {
+		if ( (itEta != m_mapParameters.end()) && (itMes != m_mapParameters.end()) && itXi != m_mapParameters.end()) {
 			m_fParameterEta = itEta->second;
 			m_unParameterXi = itXi->second;
             m_unParameterMes = itMes->second;

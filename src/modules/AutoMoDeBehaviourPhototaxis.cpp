@@ -74,7 +74,7 @@ namespace argos {
 
 	void AutoMoDeBehaviourPhototaxis::Init() {
 		std::map<std::string, Real>::iterator itMes = m_mapParameters.find("brd");
-		if ( itMesa != m_mapParameters.end() ) {
+		if ( itMes != m_mapParameters.end() ) {
 			m_bBroadcastStateAndMessage = (UInt8)itMes->second ;
 		}
 		else {
