@@ -11,7 +11,7 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/ken/depots/experiments-loop-functions/build//loop-functions/gianduja/libgianduja_aggregation_loopfunc.so"
+  <loop_functions library="/home/ken/depots/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_aggregation_loopfunc.so"
    label="gianduja_aggregation_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
@@ -49,11 +49,9 @@
 
     <!-- Change the light here -->
     <!-- <distribute>
-         <position method="uniform" min="-1,-1,0.4" max="1,1,0.4" />
-         <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-         <entity quantity="1" max_trials="100">
-            <light id="light" intensity="0.8" color="yellow" medium="leds"/>
-         </entity>
+         <position method="uniform" min="-1,-1,0" max="1,1,0" />
+         <intensity method="uniform" min="0.0" max="1.0" />
+	        <light id="light" orientation="0,0,0" color="yellow" medium="leds"/>
     </distribute> -->
     <light id="light0" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="0.0" medium="leds"/>
 
