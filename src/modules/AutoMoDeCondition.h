@@ -56,6 +56,12 @@ namespace argos {
 			 */
 			EpuckDAO* m_pcRobotDAO;
 
+            /*
+			* Param forr giandujas message
+			*/
+			UInt32 m_unMessage;
+			SInt8 m_unThreshold;
+
 		public:
 
 			virtual ~AutoMoDeCondition(){};
@@ -73,7 +79,7 @@ namespace argos {
 			/**
 			 * Initialize the condition.
 			 */
-			virtual void Init() = 0;
+			virtual void Init();
 
 			/*
 			 * Returns the DOT description of the condition.
@@ -138,7 +144,7 @@ namespace argos {
 			/*
 			 * Returns a random value from a Bernoulli distribution.
 			 */
-			bool EvaluateBernoulliProbability(const Real& f_probability) const;
+			bool EvaluateBernoulliProbability(Real f_probability);
 	};
 }
 

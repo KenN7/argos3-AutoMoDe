@@ -64,6 +64,7 @@
 	/****************************************/
 
 	void AutoMoDeConditionNeighborsCount::Init() {
+        AutoMoDeCondition::Init();
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
 		std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");
 		if ((itEta != m_mapParameters.end()) && (itXi != m_mapParameters.end())) {

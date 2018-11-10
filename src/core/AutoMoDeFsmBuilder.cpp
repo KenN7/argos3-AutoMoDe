@@ -201,12 +201,6 @@ namespace argos {
 				case 5:
 					cNewCondition = new AutoMoDeConditionFixedProbability();
 					break;
-				case 6:
-					cNewCondition = new AutoMoDeConditionMessageCount();
-					break;
-				case 7:
-					cNewCondition = new AutoMoDeConditionInvertedMessageCount();
-					break;
 			}
 
 			cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);
@@ -215,7 +209,7 @@ namespace argos {
 
 
 			// Checking for parameters
-			std::string vecPossibleParameters[] = {"p", "w", "m"};
+			std::string vecPossibleParameters[] = {"p", "w", "m", "t"};
 			UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 			for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 				std::string strCurrentParameter = vecPossibleParameters[i];

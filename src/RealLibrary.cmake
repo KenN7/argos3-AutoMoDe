@@ -25,8 +25,6 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeConditionGrayFloor.h
 	modules/AutoMoDeConditionNeighborsCount.h
 	modules/AutoMoDeConditionInvertedNeighborsCount.h
-	modules/AutoMoDeConditionMessageCount.h
-	modules/AutoMoDeConditionInvertedMessageCount.h
 	modules/AutoMoDeConditionFixedProbability.h)
 
 # Sources

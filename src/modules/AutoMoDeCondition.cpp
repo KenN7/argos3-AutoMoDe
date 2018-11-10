@@ -27,6 +27,24 @@ namespace argos {
 		return ss.str();
 	}
 
+
+    void AutoMoDeCondition::Init() {
+        std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
+        if (itMes != m_mapParameters.end()) {
+          m_unMessage = itMes->second;
+        } else {
+          LOGERR << "[FATAL] Missing parameter m for the following condition:" << m_strLabel << std::endl;
+          THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
+        std::map<std::string, Real>::iterator itThres = m_mapParameters.find("t");
+        if (itThres != m_mapParameters.end()) {
+          m_unThreshold = itThres->second;
+        } else {
+          LOGERR << "[FATAL] Missing parameter t for the following condition:" << m_strLabel << std::endl;
+          THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
+    }
+
 	/****************************************/
 	/****************************************/
 
@@ -122,8 +140,20 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-  bool AutoMoDeCondition::EvaluateBernoulliProbability(const Real& f_probability) const {
-		return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
-	}
+  bool AutoMoDeCondition::EvaluateBernoulliProbability(Real f_probability) {
+    UInt8 unNumberNeighbors = 0;
+
+    if (m_unMessage == 0) {
+      return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
+    }
+    unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unMessage);
+
+    if (unNumberNeighbors > m_unThreshold) {
+      return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
+    }
+    else {
+      return 0;
+    }
+  }
 
 }

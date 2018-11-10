@@ -41,8 +41,9 @@
   /****************************************/
 
   void AutoMoDeConditionBlackFloor::Init() {
+    AutoMoDeCondition::Init();
     m_fGroundThreshold = 0.1;
-	  std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
+	std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
     if (it != m_mapParameters.end()) {
       m_fProbability = it->second;
     } else {
@@ -62,12 +63,12 @@
   /****************************************/
 
 	bool AutoMoDeConditionBlackFloor::Verify() {
-		if (m_pcRobotDAO->GetGroundReading() <= m_fGroundThreshold) {
-      return EvaluateBernoulliProbability(m_fProbability);
-    }
-    else {
-      return false;
-    }
+	  if (m_pcRobotDAO->GetGroundReading() <= m_fGroundThreshold) {
+        return EvaluateBernoulliProbability(m_fProbability);
+      }
+      else {
+        return false;
+      }
 	}
 
   /****************************************/
