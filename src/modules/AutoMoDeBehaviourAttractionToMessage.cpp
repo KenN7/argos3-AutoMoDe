@@ -70,15 +70,13 @@ namespace argos {
 
 	void AutoMoDeBehaviourAttractionToMessage::Init() {
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("att");
-        std::map<std::string, Real>::iterator itMes = m_mapParameters.find("mes");
-		if ( (it != m_mapParameters.end()) && (itMes != m_mapParameters.end()) ) {
+		if ( it != m_mapParameters.end() ) {
 			m_unAttractionParameter = it->second;
-            m_unAttractiveMessage = itMes->second;
 		} else {
 			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
-		//m_unAttractiveMessage = 85;
+		m_unAttractiveMessage = 85;
 
 		// std::map<std::string, Real>::iterator itMes = m_mapParameters.find("brd");
 		// if (itMes != m_mapParameters.end()) {
