@@ -36,6 +36,7 @@ function write_connection() {
   echo "W${STATE}x$CONNECTION  \"--w${STATE}x$CONNECTION \" r   (0,20) | as.numeric(C${STATE}x$CONNECTION) %in% c(3,7) " >> ${TXT_FILE}
   echo "BI${STATE}x$CONNECTION  \"--p${STATE}x$CONNECTION \" i   (1,10) | as.numeric(C${STATE}x$CONNECTION) %in% c(4,6) " >> ${TXT_FILE}
   echo "WI${STATE}x$CONNECTION  \"--w${STATE}x$CONNECTION \" r   (0,20) | as.numeric(C${STATE}x$CONNECTION) %in% c(4,6) " >> ${TXT_FILE}
+  echo "M${STATE}x$CONNECTION  \"--m${STATE}x$CONNECTION \" c   (0,85) | as.numeric(C${STATE}x$CONNECTION) %in% c(6,7) " >> ${TXT_FILE}
 }
 
 function create_range() {
