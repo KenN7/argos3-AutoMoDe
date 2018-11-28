@@ -42,7 +42,7 @@
         <actuators>
           <epuck_wheels implementation="default" noise_std_dev="0.05"/>
           <epuck_rgb_leds implementation="default" medium="leds"/>
-          <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" range="0.5"/>
+          <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" range="0.7"/>
           <epuck_base_leds implementation="default" medium="leds" />
         </actuators>
         <sensors>

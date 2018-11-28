@@ -11,8 +11,8 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_beacon_aggregation_loopfunc.so"
-   label="gianduja_beacon_aggregation_loop_functions">
+  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_beacon_stop_loopfunc.so"
+   label="gianduja_beacon_stop_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
 
@@ -26,7 +26,7 @@
       <actuators>
         <epuck_wheels implementation="default" noise_std_dev="0.05"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>
-        <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" range="0.5"/>
+        <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" range="0.6"/>
       </actuators>
       <sensors>
 		    <epuck_proximity implementation="default" show_rays="false" noise_level="0.05" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/proximity_sensor.xml"/>
@@ -52,7 +52,7 @@
   		    <epuck_ground implementation="rot_z_only" noise_level="0.002" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/ground_sensor.xml"/>
   		    <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
         </sensors>
-        <params time="0" velocity="0" mes="3" />
+        <params time="-1" velocity="0" mes="3" />
     </epuck_beacon>
 
   </controllers>
@@ -117,7 +117,7 @@
   <!-- * E-Puck * -->
   <!-- ********** -->
   <e-puck id="beacon0">
-    <body orientation="0,0,0" position="0,-0.4,0" />
+    <body orientation="0,0,0" position="0,0,0" />
     <controller config="beacon" />
   </e-puck>
 
