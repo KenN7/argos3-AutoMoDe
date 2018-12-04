@@ -11,8 +11,8 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/ken/depots/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_beacon_stop_loopfunc.so"
-   label="gianduja_beacon_stop_loop_functions">
+  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_beacon_decision_loopfunc.so"
+   label="gianduja_beacon_decision_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
 
@@ -22,7 +22,7 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="/home/ken/depots/argos3-Automode21/build/src/libautomode.so">
+                        library="/home/khasselmann/argos3-AutoMoDe21/build/src/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default" noise_std_dev="0.05"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>
@@ -38,7 +38,7 @@
     <params readable='false' history='false' hist-folder='./fsm_history/' fsm-config="--nstates 1 --s0 1 --brda0 0 --brdb0 0"/>
     </automode_controller>
 
-    <epuck_beacon id="beacon" library="/home/ken/depots/robots-thesis/build/beacon_epuck/libepuck_beacon.so">
+    <epuck_beacon id="beacon" library="/home/khasselmann/robots-thesis/build/beacon_epuck/libepuck_beacon.so">
         <actuators>
           <epuck_wheels implementation="default" noise_std_dev="0.05"/>
           <epuck_rgb_leds implementation="default" medium="leds"/>
@@ -52,7 +52,7 @@
   		    <epuck_ground implementation="rot_z_only" noise_level="0.002" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/ground_sensor.xml"/>
   		    <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
         </sensors>
-        <params time="-1" velocity="0" mes="0" />
+        <params time="0" velocity="0" mes="3" />
     </epuck_beacon>
 
   </controllers>
@@ -73,7 +73,7 @@
             <light id="light" intensity="0.8" color="yellow" medium="leds"/>
          </entity>
     </distribute> -->
-    <light id="light0" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="0.0" medium="leds"/>
+    <light id="light0" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="3.0" medium="leds"/>
 
   <!--Dodecagonal arena with side of length .66-->
   <box id="wall_1" size="0.01,.66,0.08" movable="false">
@@ -153,14 +153,14 @@
   <!-- * Visualization * -->
   <!-- ***************** -->
   <visualization>
-    <qt-opengl>
+    <!-- <qt-opengl>
       <camera>
         <placement idx="0"
                    position="0,0,4.5"
                    look_at="0,0,0"
                    lens_focal_length="30" />
       </camera>
-    </qt-opengl>
+    </qt-opengl> -->
   </visualization>
 
 </argos-configuration>
