@@ -11,7 +11,7 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/libgianduja_stop_loopfunc.so"
+  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_stop_loopfunc.so"
    label="gianduja_stop_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
@@ -22,7 +22,7 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="/home/khasselmann/argos3-AutoMoDe/build/src/libautomode.so">
+                        library="/home/khasselmann/argos3-AutoMoDe1/build/src/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default" noise_std_dev="0.05"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>

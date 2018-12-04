@@ -22,7 +22,7 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="/home/khasselmann/argos3-AutoMoDe/build/src/libautomode.so">
+                        library="/home/khasselmann/argos3-AutoMoDe1/build/src/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default" noise_std_dev="0.05"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>

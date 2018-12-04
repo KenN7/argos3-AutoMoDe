@@ -17,7 +17,7 @@
 # Path to the AutoMoDe software:
 # Note that this script is ran from the execution directory
 
-EXE=/home/khasselmann/argos3-AutoMoDe/bin/automode_main
+EXE=/home/khasselmann/argos3-AutoMoDe1/bin/automode_main
 
 CONFIG_ID="$1"
 INSTANCE_ID="$2"
