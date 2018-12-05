@@ -17,8 +17,7 @@ function write_state() {
   echo "RWM$INDEX   \"--rwm$INDEX \"  i (1,100) | as.numeric(S$INDEX)==0" >> ${TXT_FILE}
   echo "ATT$INDEX   \"--att$INDEX \"  r (1,5) | as.numeric(S$INDEX) %in% c(4,6)" >> ${TXT_FILE}
   echo "REP$INDEX   \"--rep$INDEX \"  r (1,5) | as.numeric(S$INDEX) %in% c(5,7)" >> ${TXT_FILE}
-  echo "BRDA$INDEX   \"--brda$INDEX \"  c (0,10) | as.numeric(S$INDEX) %in% c(0,1,2,3,4,5)" >> ${TXT_FILE}
-  echo "BRDB$INDEX   \"--brdb$INDEX \"  c (0,160) | as.numeric(S$INDEX) %in% c(0,1,2,3,4,5)" >> ${TXT_FILE}
+  echo "BRD$INDEX   \"--brd$INDEX \"  c (0,10,160,170) | as.numeric(S$INDEX) %in% c(0,1,2,3,4,5)" >> ${TXT_FILE}
   echo "MES$INDEX   \"--mes$INDEX \"  c (10,160,170) | as.numeric(S$INDEX) %in% c(6,7)" >> ${TXT_FILE}
   if [ ${INDEX} == 0 ]; then
     echo "NumConnections$INDEX \"--n$INDEX \" i (1,4) | as.numeric(NumStates)>1" >> ${TXT_FILE}
