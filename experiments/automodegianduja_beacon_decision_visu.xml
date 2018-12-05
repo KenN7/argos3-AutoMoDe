@@ -35,7 +35,7 @@
 		    <epuck_ground implementation="rot_z_only" noise_level="0.002" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/ground_sensor.xml"/>
 		    <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
-    <params readable='false' history='false' hist-folder='./fsm_history/' fsm-config="--nstates 1 --s0 1 --brda0 0 --brdb0 0"/>
+    <params readable='false' history='false' hist-folder='./fsm_history/' fsm-config=""/>
     </automode_controller>
 
     <epuck_beacon id="beacon" library="/home/ken/depots/robots-thesis/build/beacon_epuck/libepuck_beacon.so">

@@ -18,6 +18,20 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
+	void AutoMoDeBehaviour::Init() {
+		std::map<std::string, Real>::iterator itMes = m_mapParameters.find("brd");
+		if ( itMes != m_mapParameters.end() ) {
+			m_bBroadcastStateAndMessage = (UInt8)itMes->second;
+		}
+		else {
+			LOGERR << "[FATAL] Missing brd parameter for the following behaviour:" << m_strLabel << std::endl;
+			THROW_ARGOSEXCEPTION("Missing Parameter");
+		}
+	}
+
+	/****************************************/
+	/****************************************/
+
 	const bool AutoMoDeBehaviour::IsLocked() const {
 		return m_bLocked;
 	}

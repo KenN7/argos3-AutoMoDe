@@ -142,12 +142,8 @@ namespace argos {
 
   bool AutoMoDeCondition::EvaluateBernoulliProbability( Real f_probability) {
 	  SInt8 unNumberNeighbors = 0;
-	  if (m_unMessage == 10) {
-		  unNumberNeighbors = m_pcRobotDAO->GetDiffMessagingNeighbors(160,10);
-	  }
-	  else if (m_unMessage == 160)
-	  {
-		  unNumberNeighbors = m_pcRobotDAO->GetDiffMessagingNeighbors(10,160);
+	  if (m_unMessage > 0) {
+		  unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unMessage);
 	  }
 	  else if (m_unMessage == 0) {
 		  return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
