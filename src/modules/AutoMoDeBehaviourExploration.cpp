@@ -49,6 +49,7 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourExploration::Init() {
+		AutoMoDeBehaviour::Init();
 		m_unTurnSteps = 0;
 		m_eExplorationState = RANDOM_WALK;
 		m_fProximityThreshold = 0.1;
@@ -60,19 +61,6 @@ namespace argos {
 			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
-
-		std::map<std::string, Real>::iterator itMesa = m_mapParameters.find("brda");
-		std::map<std::string, Real>::iterator itMesb = m_mapParameters.find("brdb");
-		if ((itMesa != m_mapParameters.end()) && (itMesb != m_mapParameters.end()) ) {
-			//LOG << "message to send: " << itMesa->second << " : " << itMesb->second <<std::endl;
-			m_bBroadcastStateAndMessage = (UInt8)itMesa->second | (m_bBroadcastStateAndMessage & 0xF0 ) ;
-			m_bBroadcastStateAndMessage = (UInt8)itMesb->second | (m_bBroadcastStateAndMessage & 0x0F ) ;
-		}
-		else {
-			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
-			THROW_ARGOSEXCEPTION("Missing Parameter");
-		}
-
 	}
 
 	/****************************************/

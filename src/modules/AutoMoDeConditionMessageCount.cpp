@@ -44,12 +44,8 @@
 
 	bool AutoMoDeConditionMessageCount::Verify() {
         SInt8 unNumberNeighbors = 0;
-        if (m_unParameterMes == 10) {
-            unNumberNeighbors = m_pcRobotDAO->GetDiffMessagingNeighbors(160,10);
-        }
-        else if (m_unParameterMes == 160)
-        {
-            unNumberNeighbors = m_pcRobotDAO->GetDiffMessagingNeighbors(10,160);
+        if (m_unParameterMes > 0) {
+            unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unParameterMes);
         }
 
 		//Real fProbability = (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));

@@ -27,8 +27,6 @@ namespace argos {
 
 			virtual AutoMoDeBehaviourAntiPhototaxis* Clone();
 
-		private:
-			UInt8 m_bBroadcastStateAndMessage;
 	};
 }
 

@@ -29,7 +29,6 @@ namespace argos {
 
 		private:
 			UInt8 m_unAttractionParameter;
-			UInt8 m_bBroadcastStateAndMessage;
 	};
 }
 

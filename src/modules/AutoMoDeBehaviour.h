@@ -62,7 +62,12 @@ namespace argos {
 			 * Pointer to the state of the robot. Shared with the controller AutoMoDeController
 			 * and the finite state machine AutoMoDeFiniteStateMachine.
 			 */
-      EpuckDAO* m_pcRobotDAO;
+      		EpuckDAO* m_pcRobotDAO;
+
+			/*
+			* The message to send along with the state
+			*/
+			UInt8 m_bBroadcastStateAndMessage;
 
 		public:
 
@@ -88,7 +93,7 @@ namespace argos {
 			/*
 			 * Initialize the behaviour.
 			 */
-			virtual void Init() = 0;
+			virtual void Init();
 
 			/*
 			 * Cloning function.

@@ -28,8 +28,6 @@ namespace argos {
 
 			virtual AutoMoDeBehaviourStop* Clone();
 
-		private:
-			UInt8 m_bBroadcastStateAndMessage;
 	};
 }
 
