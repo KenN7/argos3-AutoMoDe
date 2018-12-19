@@ -16,7 +16,7 @@ parameterFile = "./grammar2.0d_4s.txt"
 dependencyFile = "./depend_config.txt"
 
 ## Directory where the programs will be run.
-execDir = "./exec5"
+execDir = "./exec3"
 
 ## Directory where tuning instances are located, either absolute path or
 ## relative to current directory.
