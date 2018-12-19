@@ -6,7 +6,7 @@
 ## value on the command line).
 
 ## File that contains the description of the parameters.
-parameterFile = "./grammar2.1d_4s.txt"
+parameterFile = "./grammar3.1d_4s.txt"
 
 ## File that contains logical expressions of parameters value that
 ## valid configurations should not satisfy.
@@ -16,7 +16,7 @@ parameterFile = "./grammar2.1d_4s.txt"
 dependencyFile = "./depend_config.txt"
 
 ## Directory where the programs will be run.
-execDir = "./exec5"
+execDir = "./exec3"
 
 ## Directory where tuning instances are located, either absolute path or
 ## relative to current directory.
