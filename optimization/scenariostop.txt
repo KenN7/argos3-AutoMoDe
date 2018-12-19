@@ -6,7 +6,7 @@
 ## value on the command line).
 
 ## File that contains the description of the parameters.
-parameterFile = "./grammar2_0_4s_MCth.txt"
+parameterFile = "./grammar2.0d_4s.txt"
 
 ## File that contains logical expressions of parameters value that
 ## valid configurations should not satisfy.
