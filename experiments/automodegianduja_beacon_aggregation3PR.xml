@@ -11,8 +11,8 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/ken/depots/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_beacon_decision_loopfunc.so"
-   label="gianduja_beacon_decision_loop_functions">
+  <loop_functions library="/home/ken/depots/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_beacon_aggregation_loopfunc.so"
+   label="gianduja_beacon_aggregation_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
 
@@ -22,7 +22,7 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="/home/ken/depots/argos3-Automode21/build/src/libautomode.so">
+            library="/home/ken/depots/argos3-Automode21/build/src/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default" noise_std_dev="0.05"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>
@@ -42,7 +42,7 @@
         <actuators>
           <epuck_wheels implementation="default" noise_std_dev="0.05"/>
           <epuck_rgb_leds implementation="default" medium="leds"/>
-          <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" range="0.5"/>
+          <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" range="0.7"/>
           <epuck_base_leds implementation="default" medium="leds" />
         </actuators>
         <sensors>
@@ -73,7 +73,7 @@
             <light id="light" intensity="0.8" color="yellow" medium="leds"/>
          </entity>
     </distribute> -->
-    <light id="light0" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="10.0" medium="leds"/>
+    <light id="light0" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="0.0" medium="leds"/>
 
   <!--Dodecagonal arena with side of length .66-->
   <box id="wall_1" size="0.01,.66,0.08" movable="false">
@@ -117,7 +117,7 @@
   <!-- * E-Puck * -->
   <!-- ********** -->
   <e-puck id="beacon0">
-    <body orientation="0,0,0" position="0,0.5,0" />
+    <body orientation="0,0,0" position="0,-0.4,0" />
     <controller config="beacon" />
   </e-puck>
 
