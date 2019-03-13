@@ -5,4 +5,363 @@ ATT0   "--att0 "  r (1,5) | as.numeric(S0) %in% c(4,6)
 REP0   "--rep0 "  r (1,5) | as.numeric(S0) %in% c(5,7)
 BRD0   "--brd0 "  c (0,10,160,170) | as.numeric(S0) %in% c(0,1,2,3,4,5)
 MES0   "--mes0 "  c (10,160,170) | as.numeric(S0) %in% c(6,7)
-NumConnections0 "--n0 " i (1,6) | as.numeric(NumStates)>1
+NumConnections0 "--n0 " i (1,4) | as.numeric(NumStates)>1
+N0x0  "--n0x0 " i   (0,3) | as.numeric(NumConnections0)>0 
+C0x0  "--c0x0 " c   (0,1,2,3,4,5) | as.numeric(NumConnections0)>0 
+P0x0  "--p0x0 " r   (0,1) | as.numeric(C0x0) %in% c(0,1,2,5) 
+B0x0  "--p0x0 " i   (1,10) | as.numeric(C0x0) %in% c(3) 
+W0x0  "--w0x0 " r   (0,20) | as.numeric(C0x0) %in% c(3) 
+BI0x0  "--p0x0 " i   (1,10) | as.numeric(C0x0) %in% c(4) 
+WI0x0  "--w0x0 " r   (0,20) | as.numeric(C0x0) %in% c(4) 
+M0x0  "--m0x0 " c   (0,10,160,170) | as.numeric(C0x0) %in% c(0,1,2,3,4,5) 
+T0x0  "--t0x0 " i   (0,20) | as.numeric(C0x0) %in% c(0,1,2,3,4,5) 
+N0x1  "--n0x1 " i   (0,3) | as.numeric(NumConnections0)>1 
+C0x1  "--c0x1 " c   (0,1,2,3,4,5) | as.numeric(NumConnections0)>1 
+P0x1  "--p0x1 " r   (0,1) | as.numeric(C0x1) %in% c(0,1,2,5) 
+B0x1  "--p0x1 " i   (1,10) | as.numeric(C0x1) %in% c(3) 
+W0x1  "--w0x1 " r   (0,20) | as.numeric(C0x1) %in% c(3) 
+BI0x1  "--p0x1 " i   (1,10) | as.numeric(C0x1) %in% c(4) 
+WI0x1  "--w0x1 " r   (0,20) | as.numeric(C0x1) %in% c(4) 
+M0x1  "--m0x1 " c   (0,10,160,170) | as.numeric(C0x1) %in% c(0,1,2,3,4,5) 
+T0x1  "--t0x1 " i   (0,20) | as.numeric(C0x1) %in% c(0,1,2,3,4,5) 
+N0x2  "--n0x2 " i   (0,3) | as.numeric(NumConnections0)>2 
+C0x2  "--c0x2 " c   (0,1,2,3,4,5) | as.numeric(NumConnections0)>2 
+P0x2  "--p0x2 " r   (0,1) | as.numeric(C0x2) %in% c(0,1,2,5) 
+B0x2  "--p0x2 " i   (1,10) | as.numeric(C0x2) %in% c(3) 
+W0x2  "--w0x2 " r   (0,20) | as.numeric(C0x2) %in% c(3) 
+BI0x2  "--p0x2 " i   (1,10) | as.numeric(C0x2) %in% c(4) 
+WI0x2  "--w0x2 " r   (0,20) | as.numeric(C0x2) %in% c(4) 
+M0x2  "--m0x2 " c   (0,10,160,170) | as.numeric(C0x2) %in% c(0,1,2,3,4,5) 
+T0x2  "--t0x2 " i   (0,20) | as.numeric(C0x2) %in% c(0,1,2,3,4,5) 
+N0x3  "--n0x3 " i   (0,3) | as.numeric(NumConnections0)>3 
+C0x3  "--c0x3 " c   (0,1,2,3,4,5) | as.numeric(NumConnections0)>3 
+P0x3  "--p0x3 " r   (0,1) | as.numeric(C0x3) %in% c(0,1,2,5) 
+B0x3  "--p0x3 " i   (1,10) | as.numeric(C0x3) %in% c(3) 
+W0x3  "--w0x3 " r   (0,20) | as.numeric(C0x3) %in% c(3) 
+BI0x3  "--p0x3 " i   (1,10) | as.numeric(C0x3) %in% c(4) 
+WI0x3  "--w0x3 " r   (0,20) | as.numeric(C0x3) %in% c(4) 
+M0x3  "--m0x3 " c   (0,10,160,170) | as.numeric(C0x3) %in% c(0,1,2,3,4,5) 
+T0x3  "--t0x3 " i   (0,20) | as.numeric(C0x3) %in% c(0,1,2,3,4,5) 
+N0x4  "--n0x4 " i   (0,3) | as.numeric(NumConnections0)>4 
+C0x4  "--c0x4 " c   (0,1,2,3,4,5) | as.numeric(NumConnections0)>4 
+P0x4  "--p0x4 " r   (0,1) | as.numeric(C0x4) %in% c(0,1,2,5) 
+B0x4  "--p0x4 " i   (1,10) | as.numeric(C0x4) %in% c(3) 
+W0x4  "--w0x4 " r   (0,20) | as.numeric(C0x4) %in% c(3) 
+BI0x4  "--p0x4 " i   (1,10) | as.numeric(C0x4) %in% c(4) 
+WI0x4  "--w0x4 " r   (0,20) | as.numeric(C0x4) %in% c(4) 
+M0x4  "--m0x4 " c   (0,10,160,170) | as.numeric(C0x4) %in% c(0,1,2,3,4,5) 
+T0x4  "--t0x4 " i   (0,20) | as.numeric(C0x4) %in% c(0,1,2,3,4,5) 
+N0x5  "--n0x5 " i   (0,3) | as.numeric(NumConnections0)>5 
+C0x5  "--c0x5 " c   (0,1,2,3,4,5) | as.numeric(NumConnections0)>5 
+P0x5  "--p0x5 " r   (0,1) | as.numeric(C0x5) %in% c(0,1,2,5) 
+B0x5  "--p0x5 " i   (1,10) | as.numeric(C0x5) %in% c(3) 
+W0x5  "--w0x5 " r   (0,20) | as.numeric(C0x5) %in% c(3) 
+BI0x5  "--p0x5 " i   (1,10) | as.numeric(C0x5) %in% c(4) 
+WI0x5  "--w0x5 " r   (0,20) | as.numeric(C0x5) %in% c(4) 
+M0x5  "--m0x5 " c   (0,10,160,170) | as.numeric(C0x5) %in% c(0,1,2,3,4,5) 
+T0x5  "--t0x5 " i   (0,20) | as.numeric(C0x5) %in% c(0,1,2,3,4,5) 
+S1     "--s1 "  c   (0,1,2,3,4,5,6,7) | as.numeric(NumStates)>1 
+RWM1   "--rwm1 "  i (1,100) | as.numeric(S1)==0
+ATT1   "--att1 "  r (1,5) | as.numeric(S1) %in% c(4,6)
+REP1   "--rep1 "  r (1,5) | as.numeric(S1) %in% c(5,7)
+BRD1   "--brd1 "  c (0,10,160,170) | as.numeric(S1) %in% c(0,1,2,3,4,5)
+MES1   "--mes1 "  c (10,160,170) | as.numeric(S1) %in% c(6,7)
+NumConnections1 "--n1 " i (1,4) | as.numeric(NumStates)>1
+N1x0  "--n1x0 " i   (0,3) | as.numeric(NumConnections1)>0 
+C1x0  "--c1x0 " c   (0,1,2,3,4,5) | as.numeric(NumConnections1)>0 
+P1x0  "--p1x0 " r   (0,1) | as.numeric(C1x0) %in% c(0,1,2,5) 
+B1x0  "--p1x0 " i   (1,10) | as.numeric(C1x0) %in% c(3) 
+W1x0  "--w1x0 " r   (0,20) | as.numeric(C1x0) %in% c(3) 
+BI1x0  "--p1x0 " i   (1,10) | as.numeric(C1x0) %in% c(4) 
+WI1x0  "--w1x0 " r   (0,20) | as.numeric(C1x0) %in% c(4) 
+M1x0  "--m1x0 " c   (0,10,160,170) | as.numeric(C1x0) %in% c(0,1,2,3,4,5) 
+T1x0  "--t1x0 " i   (0,20) | as.numeric(C1x0) %in% c(0,1,2,3,4,5) 
+N1x1  "--n1x1 " i   (0,3) | as.numeric(NumConnections1)>1 
+C1x1  "--c1x1 " c   (0,1,2,3,4,5) | as.numeric(NumConnections1)>1 
+P1x1  "--p1x1 " r   (0,1) | as.numeric(C1x1) %in% c(0,1,2,5) 
+B1x1  "--p1x1 " i   (1,10) | as.numeric(C1x1) %in% c(3) 
+W1x1  "--w1x1 " r   (0,20) | as.numeric(C1x1) %in% c(3) 
+BI1x1  "--p1x1 " i   (1,10) | as.numeric(C1x1) %in% c(4) 
+WI1x1  "--w1x1 " r   (0,20) | as.numeric(C1x1) %in% c(4) 
+M1x1  "--m1x1 " c   (0,10,160,170) | as.numeric(C1x1) %in% c(0,1,2,3,4,5) 
+T1x1  "--t1x1 " i   (0,20) | as.numeric(C1x1) %in% c(0,1,2,3,4,5) 
+N1x2  "--n1x2 " i   (0,3) | as.numeric(NumConnections1)>2 
+C1x2  "--c1x2 " c   (0,1,2,3,4,5) | as.numeric(NumConnections1)>2 
+P1x2  "--p1x2 " r   (0,1) | as.numeric(C1x2) %in% c(0,1,2,5) 
+B1x2  "--p1x2 " i   (1,10) | as.numeric(C1x2) %in% c(3) 
+W1x2  "--w1x2 " r   (0,20) | as.numeric(C1x2) %in% c(3) 
+BI1x2  "--p1x2 " i   (1,10) | as.numeric(C1x2) %in% c(4) 
+WI1x2  "--w1x2 " r   (0,20) | as.numeric(C1x2) %in% c(4) 
+M1x2  "--m1x2 " c   (0,10,160,170) | as.numeric(C1x2) %in% c(0,1,2,3,4,5) 
+T1x2  "--t1x2 " i   (0,20) | as.numeric(C1x2) %in% c(0,1,2,3,4,5) 
+N1x3  "--n1x3 " i   (0,3) | as.numeric(NumConnections1)>3 
+C1x3  "--c1x3 " c   (0,1,2,3,4,5) | as.numeric(NumConnections1)>3 
+P1x3  "--p1x3 " r   (0,1) | as.numeric(C1x3) %in% c(0,1,2,5) 
+B1x3  "--p1x3 " i   (1,10) | as.numeric(C1x3) %in% c(3) 
+W1x3  "--w1x3 " r   (0,20) | as.numeric(C1x3) %in% c(3) 
+BI1x3  "--p1x3 " i   (1,10) | as.numeric(C1x3) %in% c(4) 
+WI1x3  "--w1x3 " r   (0,20) | as.numeric(C1x3) %in% c(4) 
+M1x3  "--m1x3 " c   (0,10,160,170) | as.numeric(C1x3) %in% c(0,1,2,3,4,5) 
+T1x3  "--t1x3 " i   (0,20) | as.numeric(C1x3) %in% c(0,1,2,3,4,5) 
+N1x4  "--n1x4 " i   (0,3) | as.numeric(NumConnections1)>4 
+C1x4  "--c1x4 " c   (0,1,2,3,4,5) | as.numeric(NumConnections1)>4 
+P1x4  "--p1x4 " r   (0,1) | as.numeric(C1x4) %in% c(0,1,2,5) 
+B1x4  "--p1x4 " i   (1,10) | as.numeric(C1x4) %in% c(3) 
+W1x4  "--w1x4 " r   (0,20) | as.numeric(C1x4) %in% c(3) 
+BI1x4  "--p1x4 " i   (1,10) | as.numeric(C1x4) %in% c(4) 
+WI1x4  "--w1x4 " r   (0,20) | as.numeric(C1x4) %in% c(4) 
+M1x4  "--m1x4 " c   (0,10,160,170) | as.numeric(C1x4) %in% c(0,1,2,3,4,5) 
+T1x4  "--t1x4 " i   (0,20) | as.numeric(C1x4) %in% c(0,1,2,3,4,5) 
+N1x5  "--n1x5 " i   (0,3) | as.numeric(NumConnections1)>5 
+C1x5  "--c1x5 " c   (0,1,2,3,4,5) | as.numeric(NumConnections1)>5 
+P1x5  "--p1x5 " r   (0,1) | as.numeric(C1x5) %in% c(0,1,2,5) 
+B1x5  "--p1x5 " i   (1,10) | as.numeric(C1x5) %in% c(3) 
+W1x5  "--w1x5 " r   (0,20) | as.numeric(C1x5) %in% c(3) 
+BI1x5  "--p1x5 " i   (1,10) | as.numeric(C1x5) %in% c(4) 
+WI1x5  "--w1x5 " r   (0,20) | as.numeric(C1x5) %in% c(4) 
+M1x5  "--m1x5 " c   (0,10,160,170) | as.numeric(C1x5) %in% c(0,1,2,3,4,5) 
+T1x5  "--t1x5 " i   (0,20) | as.numeric(C1x5) %in% c(0,1,2,3,4,5) 
+S2     "--s2 "  c   (0,1,2,3,4,5,6,7) | as.numeric(NumStates)>2 
+RWM2   "--rwm2 "  i (1,100) | as.numeric(S2)==0
+ATT2   "--att2 "  r (1,5) | as.numeric(S2) %in% c(4,6)
+REP2   "--rep2 "  r (1,5) | as.numeric(S2) %in% c(5,7)
+BRD2   "--brd2 "  c (0,10,160,170) | as.numeric(S2) %in% c(0,1,2,3,4,5)
+MES2   "--mes2 "  c (10,160,170) | as.numeric(S2) %in% c(6,7)
+NumConnections2 "--n2 " i (1,4) | as.numeric(NumStates)>2
+N2x0  "--n2x0 " i   (0,3) | as.numeric(NumConnections2)>0 
+C2x0  "--c2x0 " c   (0,1,2,3,4,5) | as.numeric(NumConnections2)>0 
+P2x0  "--p2x0 " r   (0,1) | as.numeric(C2x0) %in% c(0,1,2,5) 
+B2x0  "--p2x0 " i   (1,10) | as.numeric(C2x0) %in% c(3) 
+W2x0  "--w2x0 " r   (0,20) | as.numeric(C2x0) %in% c(3) 
+BI2x0  "--p2x0 " i   (1,10) | as.numeric(C2x0) %in% c(4) 
+WI2x0  "--w2x0 " r   (0,20) | as.numeric(C2x0) %in% c(4) 
+M2x0  "--m2x0 " c   (0,10,160,170) | as.numeric(C2x0) %in% c(0,1,2,3,4,5) 
+T2x0  "--t2x0 " i   (0,20) | as.numeric(C2x0) %in% c(0,1,2,3,4,5) 
+N2x1  "--n2x1 " i   (0,3) | as.numeric(NumConnections2)>1 
+C2x1  "--c2x1 " c   (0,1,2,3,4,5) | as.numeric(NumConnections2)>1 
+P2x1  "--p2x1 " r   (0,1) | as.numeric(C2x1) %in% c(0,1,2,5) 
+B2x1  "--p2x1 " i   (1,10) | as.numeric(C2x1) %in% c(3) 
+W2x1  "--w2x1 " r   (0,20) | as.numeric(C2x1) %in% c(3) 
+BI2x1  "--p2x1 " i   (1,10) | as.numeric(C2x1) %in% c(4) 
+WI2x1  "--w2x1 " r   (0,20) | as.numeric(C2x1) %in% c(4) 
+M2x1  "--m2x1 " c   (0,10,160,170) | as.numeric(C2x1) %in% c(0,1,2,3,4,5) 
+T2x1  "--t2x1 " i   (0,20) | as.numeric(C2x1) %in% c(0,1,2,3,4,5) 
+N2x2  "--n2x2 " i   (0,3) | as.numeric(NumConnections2)>2 
+C2x2  "--c2x2 " c   (0,1,2,3,4,5) | as.numeric(NumConnections2)>2 
+P2x2  "--p2x2 " r   (0,1) | as.numeric(C2x2) %in% c(0,1,2,5) 
+B2x2  "--p2x2 " i   (1,10) | as.numeric(C2x2) %in% c(3) 
+W2x2  "--w2x2 " r   (0,20) | as.numeric(C2x2) %in% c(3) 
+BI2x2  "--p2x2 " i   (1,10) | as.numeric(C2x2) %in% c(4) 
+WI2x2  "--w2x2 " r   (0,20) | as.numeric(C2x2) %in% c(4) 
+M2x2  "--m2x2 " c   (0,10,160,170) | as.numeric(C2x2) %in% c(0,1,2,3,4,5) 
+T2x2  "--t2x2 " i   (0,20) | as.numeric(C2x2) %in% c(0,1,2,3,4,5) 
+N2x3  "--n2x3 " i   (0,3) | as.numeric(NumConnections2)>3 
+C2x3  "--c2x3 " c   (0,1,2,3,4,5) | as.numeric(NumConnections2)>3 
+P2x3  "--p2x3 " r   (0,1) | as.numeric(C2x3) %in% c(0,1,2,5) 
+B2x3  "--p2x3 " i   (1,10) | as.numeric(C2x3) %in% c(3) 
+W2x3  "--w2x3 " r   (0,20) | as.numeric(C2x3) %in% c(3) 
+BI2x3  "--p2x3 " i   (1,10) | as.numeric(C2x3) %in% c(4) 
+WI2x3  "--w2x3 " r   (0,20) | as.numeric(C2x3) %in% c(4) 
+M2x3  "--m2x3 " c   (0,10,160,170) | as.numeric(C2x3) %in% c(0,1,2,3,4,5) 
+T2x3  "--t2x3 " i   (0,20) | as.numeric(C2x3) %in% c(0,1,2,3,4,5) 
+N2x4  "--n2x4 " i   (0,3) | as.numeric(NumConnections2)>4 
+C2x4  "--c2x4 " c   (0,1,2,3,4,5) | as.numeric(NumConnections2)>4 
+P2x4  "--p2x4 " r   (0,1) | as.numeric(C2x4) %in% c(0,1,2,5) 
+B2x4  "--p2x4 " i   (1,10) | as.numeric(C2x4) %in% c(3) 
+W2x4  "--w2x4 " r   (0,20) | as.numeric(C2x4) %in% c(3) 
+BI2x4  "--p2x4 " i   (1,10) | as.numeric(C2x4) %in% c(4) 
+WI2x4  "--w2x4 " r   (0,20) | as.numeric(C2x4) %in% c(4) 
+M2x4  "--m2x4 " c   (0,10,160,170) | as.numeric(C2x4) %in% c(0,1,2,3,4,5) 
+T2x4  "--t2x4 " i   (0,20) | as.numeric(C2x4) %in% c(0,1,2,3,4,5) 
+N2x5  "--n2x5 " i   (0,3) | as.numeric(NumConnections2)>5 
+C2x5  "--c2x5 " c   (0,1,2,3,4,5) | as.numeric(NumConnections2)>5 
+P2x5  "--p2x5 " r   (0,1) | as.numeric(C2x5) %in% c(0,1,2,5) 
+B2x5  "--p2x5 " i   (1,10) | as.numeric(C2x5) %in% c(3) 
+W2x5  "--w2x5 " r   (0,20) | as.numeric(C2x5) %in% c(3) 
+BI2x5  "--p2x5 " i   (1,10) | as.numeric(C2x5) %in% c(4) 
+WI2x5  "--w2x5 " r   (0,20) | as.numeric(C2x5) %in% c(4) 
+M2x5  "--m2x5 " c   (0,10,160,170) | as.numeric(C2x5) %in% c(0,1,2,3,4,5) 
+T2x5  "--t2x5 " i   (0,20) | as.numeric(C2x5) %in% c(0,1,2,3,4,5) 
+S3     "--s3 "  c   (0,1,2,3,4,5,6,7) | as.numeric(NumStates)>3 
+RWM3   "--rwm3 "  i (1,100) | as.numeric(S3)==0
+ATT3   "--att3 "  r (1,5) | as.numeric(S3) %in% c(4,6)
+REP3   "--rep3 "  r (1,5) | as.numeric(S3) %in% c(5,7)
+BRD3   "--brd3 "  c (0,10,160,170) | as.numeric(S3) %in% c(0,1,2,3,4,5)
+MES3   "--mes3 "  c (10,160,170) | as.numeric(S3) %in% c(6,7)
+NumConnections3 "--n3 " i (1,4) | as.numeric(NumStates)>3
+N3x0  "--n3x0 " i   (0,3) | as.numeric(NumConnections3)>0 
+C3x0  "--c3x0 " c   (0,1,2,3,4,5) | as.numeric(NumConnections3)>0 
+P3x0  "--p3x0 " r   (0,1) | as.numeric(C3x0) %in% c(0,1,2,5) 
+B3x0  "--p3x0 " i   (1,10) | as.numeric(C3x0) %in% c(3) 
+W3x0  "--w3x0 " r   (0,20) | as.numeric(C3x0) %in% c(3) 
+BI3x0  "--p3x0 " i   (1,10) | as.numeric(C3x0) %in% c(4) 
+WI3x0  "--w3x0 " r   (0,20) | as.numeric(C3x0) %in% c(4) 
+M3x0  "--m3x0 " c   (0,10,160,170) | as.numeric(C3x0) %in% c(0,1,2,3,4,5) 
+T3x0  "--t3x0 " i   (0,20) | as.numeric(C3x0) %in% c(0,1,2,3,4,5) 
+N3x1  "--n3x1 " i   (0,3) | as.numeric(NumConnections3)>1 
+C3x1  "--c3x1 " c   (0,1,2,3,4,5) | as.numeric(NumConnections3)>1 
+P3x1  "--p3x1 " r   (0,1) | as.numeric(C3x1) %in% c(0,1,2,5) 
+B3x1  "--p3x1 " i   (1,10) | as.numeric(C3x1) %in% c(3) 
+W3x1  "--w3x1 " r   (0,20) | as.numeric(C3x1) %in% c(3) 
+BI3x1  "--p3x1 " i   (1,10) | as.numeric(C3x1) %in% c(4) 
+WI3x1  "--w3x1 " r   (0,20) | as.numeric(C3x1) %in% c(4) 
+M3x1  "--m3x1 " c   (0,10,160,170) | as.numeric(C3x1) %in% c(0,1,2,3,4,5) 
+T3x1  "--t3x1 " i   (0,20) | as.numeric(C3x1) %in% c(0,1,2,3,4,5) 
+N3x2  "--n3x2 " i   (0,3) | as.numeric(NumConnections3)>2 
+C3x2  "--c3x2 " c   (0,1,2,3,4,5) | as.numeric(NumConnections3)>2 
+P3x2  "--p3x2 " r   (0,1) | as.numeric(C3x2) %in% c(0,1,2,5) 
+B3x2  "--p3x2 " i   (1,10) | as.numeric(C3x2) %in% c(3) 
+W3x2  "--w3x2 " r   (0,20) | as.numeric(C3x2) %in% c(3) 
+BI3x2  "--p3x2 " i   (1,10) | as.numeric(C3x2) %in% c(4) 
+WI3x2  "--w3x2 " r   (0,20) | as.numeric(C3x2) %in% c(4) 
+M3x2  "--m3x2 " c   (0,10,160,170) | as.numeric(C3x2) %in% c(0,1,2,3,4,5) 
+T3x2  "--t3x2 " i   (0,20) | as.numeric(C3x2) %in% c(0,1,2,3,4,5) 
+N3x3  "--n3x3 " i   (0,3) | as.numeric(NumConnections3)>3 
+C3x3  "--c3x3 " c   (0,1,2,3,4,5) | as.numeric(NumConnections3)>3 
+P3x3  "--p3x3 " r   (0,1) | as.numeric(C3x3) %in% c(0,1,2,5) 
+B3x3  "--p3x3 " i   (1,10) | as.numeric(C3x3) %in% c(3) 
+W3x3  "--w3x3 " r   (0,20) | as.numeric(C3x3) %in% c(3) 
+BI3x3  "--p3x3 " i   (1,10) | as.numeric(C3x3) %in% c(4) 
+WI3x3  "--w3x3 " r   (0,20) | as.numeric(C3x3) %in% c(4) 
+M3x3  "--m3x3 " c   (0,10,160,170) | as.numeric(C3x3) %in% c(0,1,2,3,4,5) 
+T3x3  "--t3x3 " i   (0,20) | as.numeric(C3x3) %in% c(0,1,2,3,4,5) 
+N3x4  "--n3x4 " i   (0,3) | as.numeric(NumConnections3)>4 
+C3x4  "--c3x4 " c   (0,1,2,3,4,5) | as.numeric(NumConnections3)>4 
+P3x4  "--p3x4 " r   (0,1) | as.numeric(C3x4) %in% c(0,1,2,5) 
+B3x4  "--p3x4 " i   (1,10) | as.numeric(C3x4) %in% c(3) 
+W3x4  "--w3x4 " r   (0,20) | as.numeric(C3x4) %in% c(3) 
+BI3x4  "--p3x4 " i   (1,10) | as.numeric(C3x4) %in% c(4) 
+WI3x4  "--w3x4 " r   (0,20) | as.numeric(C3x4) %in% c(4) 
+M3x4  "--m3x4 " c   (0,10,160,170) | as.numeric(C3x4) %in% c(0,1,2,3,4,5) 
+T3x4  "--t3x4 " i   (0,20) | as.numeric(C3x4) %in% c(0,1,2,3,4,5) 
+N3x5  "--n3x5 " i   (0,3) | as.numeric(NumConnections3)>5 
+C3x5  "--c3x5 " c   (0,1,2,3,4,5) | as.numeric(NumConnections3)>5 
+P3x5  "--p3x5 " r   (0,1) | as.numeric(C3x5) %in% c(0,1,2,5) 
+B3x5  "--p3x5 " i   (1,10) | as.numeric(C3x5) %in% c(3) 
+W3x5  "--w3x5 " r   (0,20) | as.numeric(C3x5) %in% c(3) 
+BI3x5  "--p3x5 " i   (1,10) | as.numeric(C3x5) %in% c(4) 
+WI3x5  "--w3x5 " r   (0,20) | as.numeric(C3x5) %in% c(4) 
+M3x5  "--m3x5 " c   (0,10,160,170) | as.numeric(C3x5) %in% c(0,1,2,3,4,5) 
+T3x5  "--t3x5 " i   (0,20) | as.numeric(C3x5) %in% c(0,1,2,3,4,5) 
+S4     "--s4 "  c   (0,1,2,3,4,5,6,7) | as.numeric(NumStates)>4 
+RWM4   "--rwm4 "  i (1,100) | as.numeric(S4)==0
+ATT4   "--att4 "  r (1,5) | as.numeric(S4) %in% c(4,6)
+REP4   "--rep4 "  r (1,5) | as.numeric(S4) %in% c(5,7)
+BRD4   "--brd4 "  c (0,10,160,170) | as.numeric(S4) %in% c(0,1,2,3,4,5)
+MES4   "--mes4 "  c (10,160,170) | as.numeric(S4) %in% c(6,7)
+NumConnections4 "--n4 " i (1,4) | as.numeric(NumStates)>4
+N4x0  "--n4x0 " i   (0,3) | as.numeric(NumConnections4)>0 
+C4x0  "--c4x0 " c   (0,1,2,3,4,5) | as.numeric(NumConnections4)>0 
+P4x0  "--p4x0 " r   (0,1) | as.numeric(C4x0) %in% c(0,1,2,5) 
+B4x0  "--p4x0 " i   (1,10) | as.numeric(C4x0) %in% c(3) 
+W4x0  "--w4x0 " r   (0,20) | as.numeric(C4x0) %in% c(3) 
+BI4x0  "--p4x0 " i   (1,10) | as.numeric(C4x0) %in% c(4) 
+WI4x0  "--w4x0 " r   (0,20) | as.numeric(C4x0) %in% c(4) 
+M4x0  "--m4x0 " c   (0,10,160,170) | as.numeric(C4x0) %in% c(0,1,2,3,4,5) 
+T4x0  "--t4x0 " i   (0,20) | as.numeric(C4x0) %in% c(0,1,2,3,4,5) 
+N4x1  "--n4x1 " i   (0,3) | as.numeric(NumConnections4)>1 
+C4x1  "--c4x1 " c   (0,1,2,3,4,5) | as.numeric(NumConnections4)>1 
+P4x1  "--p4x1 " r   (0,1) | as.numeric(C4x1) %in% c(0,1,2,5) 
+B4x1  "--p4x1 " i   (1,10) | as.numeric(C4x1) %in% c(3) 
+W4x1  "--w4x1 " r   (0,20) | as.numeric(C4x1) %in% c(3) 
+BI4x1  "--p4x1 " i   (1,10) | as.numeric(C4x1) %in% c(4) 
+WI4x1  "--w4x1 " r   (0,20) | as.numeric(C4x1) %in% c(4) 
+M4x1  "--m4x1 " c   (0,10,160,170) | as.numeric(C4x1) %in% c(0,1,2,3,4,5) 
+T4x1  "--t4x1 " i   (0,20) | as.numeric(C4x1) %in% c(0,1,2,3,4,5) 
+N4x2  "--n4x2 " i   (0,3) | as.numeric(NumConnections4)>2 
+C4x2  "--c4x2 " c   (0,1,2,3,4,5) | as.numeric(NumConnections4)>2 
+P4x2  "--p4x2 " r   (0,1) | as.numeric(C4x2) %in% c(0,1,2,5) 
+B4x2  "--p4x2 " i   (1,10) | as.numeric(C4x2) %in% c(3) 
+W4x2  "--w4x2 " r   (0,20) | as.numeric(C4x2) %in% c(3) 
+BI4x2  "--p4x2 " i   (1,10) | as.numeric(C4x2) %in% c(4) 
+WI4x2  "--w4x2 " r   (0,20) | as.numeric(C4x2) %in% c(4) 
+M4x2  "--m4x2 " c   (0,10,160,170) | as.numeric(C4x2) %in% c(0,1,2,3,4,5) 
+T4x2  "--t4x2 " i   (0,20) | as.numeric(C4x2) %in% c(0,1,2,3,4,5) 
+N4x3  "--n4x3 " i   (0,3) | as.numeric(NumConnections4)>3 
+C4x3  "--c4x3 " c   (0,1,2,3,4,5) | as.numeric(NumConnections4)>3 
+P4x3  "--p4x3 " r   (0,1) | as.numeric(C4x3) %in% c(0,1,2,5) 
+B4x3  "--p4x3 " i   (1,10) | as.numeric(C4x3) %in% c(3) 
+W4x3  "--w4x3 " r   (0,20) | as.numeric(C4x3) %in% c(3) 
+BI4x3  "--p4x3 " i   (1,10) | as.numeric(C4x3) %in% c(4) 
+WI4x3  "--w4x3 " r   (0,20) | as.numeric(C4x3) %in% c(4) 
+M4x3  "--m4x3 " c   (0,10,160,170) | as.numeric(C4x3) %in% c(0,1,2,3,4,5) 
+T4x3  "--t4x3 " i   (0,20) | as.numeric(C4x3) %in% c(0,1,2,3,4,5) 
+N4x4  "--n4x4 " i   (0,3) | as.numeric(NumConnections4)>4 
+C4x4  "--c4x4 " c   (0,1,2,3,4,5) | as.numeric(NumConnections4)>4 
+P4x4  "--p4x4 " r   (0,1) | as.numeric(C4x4) %in% c(0,1,2,5) 
+B4x4  "--p4x4 " i   (1,10) | as.numeric(C4x4) %in% c(3) 
+W4x4  "--w4x4 " r   (0,20) | as.numeric(C4x4) %in% c(3) 
+BI4x4  "--p4x4 " i   (1,10) | as.numeric(C4x4) %in% c(4) 
+WI4x4  "--w4x4 " r   (0,20) | as.numeric(C4x4) %in% c(4) 
+M4x4  "--m4x4 " c   (0,10,160,170) | as.numeric(C4x4) %in% c(0,1,2,3,4,5) 
+T4x4  "--t4x4 " i   (0,20) | as.numeric(C4x4) %in% c(0,1,2,3,4,5) 
+N4x5  "--n4x5 " i   (0,3) | as.numeric(NumConnections4)>5 
+C4x5  "--c4x5 " c   (0,1,2,3,4,5) | as.numeric(NumConnections4)>5 
+P4x5  "--p4x5 " r   (0,1) | as.numeric(C4x5) %in% c(0,1,2,5) 
+B4x5  "--p4x5 " i   (1,10) | as.numeric(C4x5) %in% c(3) 
+W4x5  "--w4x5 " r   (0,20) | as.numeric(C4x5) %in% c(3) 
+BI4x5  "--p4x5 " i   (1,10) | as.numeric(C4x5) %in% c(4) 
+WI4x5  "--w4x5 " r   (0,20) | as.numeric(C4x5) %in% c(4) 
+M4x5  "--m4x5 " c   (0,10,160,170) | as.numeric(C4x5) %in% c(0,1,2,3,4,5) 
+T4x5  "--t4x5 " i   (0,20) | as.numeric(C4x5) %in% c(0,1,2,3,4,5) 
+S5     "--s5 "  c   (0,1,2,3,4,5,6,7) | as.numeric(NumStates)>5 
+RWM5   "--rwm5 "  i (1,100) | as.numeric(S5)==0
+ATT5   "--att5 "  r (1,5) | as.numeric(S5) %in% c(4,6)
+REP5   "--rep5 "  r (1,5) | as.numeric(S5) %in% c(5,7)
+BRD5   "--brd5 "  c (0,10,160,170) | as.numeric(S5) %in% c(0,1,2,3,4,5)
+MES5   "--mes5 "  c (10,160,170) | as.numeric(S5) %in% c(6,7)
+NumConnections5 "--n5 " i (1,4) | as.numeric(NumStates)>5
+N5x0  "--n5x0 " i   (0,3) | as.numeric(NumConnections5)>0 
+C5x0  "--c5x0 " c   (0,1,2,3,4,5) | as.numeric(NumConnections5)>0 
+P5x0  "--p5x0 " r   (0,1) | as.numeric(C5x0) %in% c(0,1,2,5) 
+B5x0  "--p5x0 " i   (1,10) | as.numeric(C5x0) %in% c(3) 
+W5x0  "--w5x0 " r   (0,20) | as.numeric(C5x0) %in% c(3) 
+BI5x0  "--p5x0 " i   (1,10) | as.numeric(C5x0) %in% c(4) 
+WI5x0  "--w5x0 " r   (0,20) | as.numeric(C5x0) %in% c(4) 
+M5x0  "--m5x0 " c   (0,10,160,170) | as.numeric(C5x0) %in% c(0,1,2,3,4,5) 
+T5x0  "--t5x0 " i   (0,20) | as.numeric(C5x0) %in% c(0,1,2,3,4,5) 
+N5x1  "--n5x1 " i   (0,3) | as.numeric(NumConnections5)>1 
+C5x1  "--c5x1 " c   (0,1,2,3,4,5) | as.numeric(NumConnections5)>1 
+P5x1  "--p5x1 " r   (0,1) | as.numeric(C5x1) %in% c(0,1,2,5) 
+B5x1  "--p5x1 " i   (1,10) | as.numeric(C5x1) %in% c(3) 
+W5x1  "--w5x1 " r   (0,20) | as.numeric(C5x1) %in% c(3) 
+BI5x1  "--p5x1 " i   (1,10) | as.numeric(C5x1) %in% c(4) 
+WI5x1  "--w5x1 " r   (0,20) | as.numeric(C5x1) %in% c(4) 
+M5x1  "--m5x1 " c   (0,10,160,170) | as.numeric(C5x1) %in% c(0,1,2,3,4,5) 
+T5x1  "--t5x1 " i   (0,20) | as.numeric(C5x1) %in% c(0,1,2,3,4,5) 
+N5x2  "--n5x2 " i   (0,3) | as.numeric(NumConnections5)>2 
+C5x2  "--c5x2 " c   (0,1,2,3,4,5) | as.numeric(NumConnections5)>2 
+P5x2  "--p5x2 " r   (0,1) | as.numeric(C5x2) %in% c(0,1,2,5) 
+B5x2  "--p5x2 " i   (1,10) | as.numeric(C5x2) %in% c(3) 
+W5x2  "--w5x2 " r   (0,20) | as.numeric(C5x2) %in% c(3) 
+BI5x2  "--p5x2 " i   (1,10) | as.numeric(C5x2) %in% c(4) 
+WI5x2  "--w5x2 " r   (0,20) | as.numeric(C5x2) %in% c(4) 
+M5x2  "--m5x2 " c   (0,10,160,170) | as.numeric(C5x2) %in% c(0,1,2,3,4,5) 
+T5x2  "--t5x2 " i   (0,20) | as.numeric(C5x2) %in% c(0,1,2,3,4,5) 
+N5x3  "--n5x3 " i   (0,3) | as.numeric(NumConnections5)>3 
+C5x3  "--c5x3 " c   (0,1,2,3,4,5) | as.numeric(NumConnections5)>3 
+P5x3  "--p5x3 " r   (0,1) | as.numeric(C5x3) %in% c(0,1,2,5) 
+B5x3  "--p5x3 " i   (1,10) | as.numeric(C5x3) %in% c(3) 
+W5x3  "--w5x3 " r   (0,20) | as.numeric(C5x3) %in% c(3) 
+BI5x3  "--p5x3 " i   (1,10) | as.numeric(C5x3) %in% c(4) 
+WI5x3  "--w5x3 " r   (0,20) | as.numeric(C5x3) %in% c(4) 
+M5x3  "--m5x3 " c   (0,10,160,170) | as.numeric(C5x3) %in% c(0,1,2,3,4,5) 
+T5x3  "--t5x3 " i   (0,20) | as.numeric(C5x3) %in% c(0,1,2,3,4,5) 
+N5x4  "--n5x4 " i   (0,3) | as.numeric(NumConnections5)>4 
+C5x4  "--c5x4 " c   (0,1,2,3,4,5) | as.numeric(NumConnections5)>4 
+P5x4  "--p5x4 " r   (0,1) | as.numeric(C5x4) %in% c(0,1,2,5) 
+B5x4  "--p5x4 " i   (1,10) | as.numeric(C5x4) %in% c(3) 
+W5x4  "--w5x4 " r   (0,20) | as.numeric(C5x4) %in% c(3) 
+BI5x4  "--p5x4 " i   (1,10) | as.numeric(C5x4) %in% c(4) 
+WI5x4  "--w5x4 " r   (0,20) | as.numeric(C5x4) %in% c(4) 
+M5x4  "--m5x4 " c   (0,10,160,170) | as.numeric(C5x4) %in% c(0,1,2,3,4,5) 
+T5x4  "--t5x4 " i   (0,20) | as.numeric(C5x4) %in% c(0,1,2,3,4,5) 
+N5x5  "--n5x5 " i   (0,3) | as.numeric(NumConnections5)>5 
+C5x5  "--c5x5 " c   (0,1,2,3,4,5) | as.numeric(NumConnections5)>5 
+P5x5  "--p5x5 " r   (0,1) | as.numeric(C5x5) %in% c(0,1,2,5) 
+B5x5  "--p5x5 " i   (1,10) | as.numeric(C5x5) %in% c(3) 
+W5x5  "--w5x5 " r   (0,20) | as.numeric(C5x5) %in% c(3) 
+BI5x5  "--p5x5 " i   (1,10) | as.numeric(C5x5) %in% c(4) 
+WI5x5  "--w5x5 " r   (0,20) | as.numeric(C5x5) %in% c(4) 
+M5x5  "--m5x5 " c   (0,10,160,170) | as.numeric(C5x5) %in% c(0,1,2,3,4,5) 
+T5x5  "--t5x5 " i   (0,20) | as.numeric(C5x5) %in% c(0,1,2,3,4,5) 
