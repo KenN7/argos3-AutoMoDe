@@ -56,6 +56,17 @@ namespace argos {
 			 */
 			EpuckDAO* m_pcRobotDAO;
 
+			/*
+			 * Name of the specific gianduja method
+			 */
+			std::string m_strMethod;
+
+			/*
+			* Param forr giandujas message
+			*/
+			UInt32 m_unMessage;
+			SInt8 m_unThreshold;
+
 		public:
 
 			virtual ~AutoMoDeCondition(){};
@@ -73,7 +84,7 @@ namespace argos {
 			/**
 			 * Initialize the condition.
 			 */
-			virtual void Init() = 0;
+			virtual void Init();
 
 			/*
 			 * Returns the DOT description of the condition.
@@ -111,6 +122,12 @@ namespace argos {
 			const UInt32& GetIdentifier() const;
 
 			/*
+			 * Getter and setter for the identifier of the condition.
+			 */
+			void SetMethod(const std::string& str_method);
+			const std::string& GetMethod() const;
+
+			/*
 			 * Adds a pair <parameter, value> to the parameters map.
 			 */
 			void AddParameter(const std::string& str_identifier, const Real& f_value);
@@ -138,7 +155,7 @@ namespace argos {
 			/*
 			 * Returns a random value from a Bernoulli distribution.
 			 */
-			bool EvaluateBernoulliProbability(const Real& f_probability) const;
+			bool EvaluateBernoulliProbability(Real f_probability);
 	};
 }
 

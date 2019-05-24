@@ -60,6 +60,7 @@
   /****************************************/
 
 	void AutoMoDeConditionGrayFloor::Init() {
+        AutoMoDeCondition::Init();
 		m_fGroundThresholdRange.Set(0.1, 0.95);
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {

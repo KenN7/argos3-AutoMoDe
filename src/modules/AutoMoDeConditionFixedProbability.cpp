@@ -48,6 +48,7 @@
   /****************************************/
 
 	void AutoMoDeConditionFixedProbability::Init() {
+        AutoMoDeCondition::Init();
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
 			m_fProbability = it->second;

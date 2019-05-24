@@ -41,6 +41,7 @@
   /****************************************/
 
   void AutoMoDeConditionBlackFloor::Init() {
+    AutoMoDeCondition::Init();
     m_fGroundThreshold = 0.1;
 	  std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
     if (it != m_mapParameters.end()) {

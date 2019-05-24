@@ -70,23 +70,24 @@ namespace argos {
 
 	void AutoMoDeBehaviourAttractionToMessage::Init() {
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("att");
-        std::map<std::string, Real>::iterator itMes = m_mapParameters.find("mes");
-		if ( (it != m_mapParameters.end()) && (itMes != m_mapParameters.end()) ) {
+		if ( it != m_mapParameters.end() ) {
 			m_unAttractionParameter = it->second;
-            m_unAttractiveMessage = itMes->second;
 		} else {
-			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+			LOGERR << "[FATAL] Missing att parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
-		//m_unAttractiveMessage = 85;
+		m_unAttractiveMessage = 85; //default value for 1
 
-		// std::map<std::string, Real>::iterator itMes = m_mapParameters.find("brd");
-		// if (itMes != m_mapParameters.end()) {
-		// 	m_bBroadcastState = itMes->second;
-		// } else {
-		// 	LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
-		// 	THROW_ARGOSEXCEPTION("Missing Parameter");
-		// }
+		if (m_strMethod == "1E" || m_strMethod == "1EX" || m_strMethod == "2E") {
+			std::map<std::string, Real>::iterator itMes = m_mapParameters.find("mes");
+			if ( itMes != m_mapParameters.end() ) {
+				m_unAttractiveMessage = itMes->second;
+			}
+			else {
+				LOGERR << "[FATAL] Missing mes parameter for the following behaviour:" << m_strLabel << std::endl;
+				THROW_ARGOSEXCEPTION("Missing Parameter");
+			}
+		}
 	}
 
 	/****************************************/

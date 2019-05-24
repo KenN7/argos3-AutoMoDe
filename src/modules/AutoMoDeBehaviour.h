@@ -59,6 +59,11 @@ namespace argos {
 			UInt32 m_unIdentifier;
 
 			/*
+			 * Name of the specific gianduja method
+			 */
+			std::string m_strMethod;
+
+			/*
 			 * Pointer to the state of the robot. Shared with the controller AutoMoDeController
 			 * and the finite state machine AutoMoDeFiniteStateMachine.
 			 */
@@ -139,6 +144,12 @@ namespace argos {
 			 * Getter for the identifier of the behaviour.
 			 */
 			const UInt32& GetIdentifier() const;
+
+			/*
+			 * Getter and setter for the identifier of the condition.
+			 */
+			void SetMethod(const std::string& str_method);
+			const std::string& GetMethod() const;
 
 			/*
 			 * Getter for the label (name) of the behaviour.

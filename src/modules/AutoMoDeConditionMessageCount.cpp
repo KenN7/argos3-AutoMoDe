@@ -78,16 +78,35 @@
 
 	void AutoMoDeConditionMessageCount::Init() {
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
-		//std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");
-        std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
-		if ( (itEta != m_mapParameters.end()) && (itMes != m_mapParameters.end()) ) { //&& (itXi != m_mapParameters.end())
+		if ( (itEta != m_mapParameters.end()) ) {
 			m_fParameterEta = itEta->second;
-			//m_unParameterXi = itXi->second;
-            m_unParameterMes = itMes->second;
 		} else {
 			LOGERR << "[FATAL] Missing parameter for the following condition:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
+
+        if (m_strMethod == "1" || m_strMethod == "1X") {
+            std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");
+            if ( itXi != m_mapParameters.end() ) {
+                m_unParameterXi = itXi->second;
+            }
+            else {
+                LOGERR << "[FATAL] Missing p parameter for the following behaviour:" << m_strLabel << std::endl;
+                THROW_ARGOSEXCEPTION("Missing Parameter");
+            }
+        }
+
+        if (m_strMethod == "2" || m_strMethod == "2E") {
+            std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
+            if ( itMes != m_mapParameters.end() ) {
+                m_unParameterMes = itMes->second;
+            }
+            else {
+                LOGERR << "[FATAL] Missing m parameter for the following behaviour:" << m_strLabel << std::endl;
+                THROW_ARGOSEXCEPTION("Missing Parameter");
+            }
+        }
+
 	}
 
  }

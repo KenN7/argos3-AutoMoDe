@@ -16,13 +16,14 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeController::AutoMoDeController() {
-		m_pcRobotState = new ReferenceModel2Dot3();
+		m_pcRobotState = nullptr;
 		m_unTimeStep = 0;
 		m_strFsmConfiguration = "";
 		m_bMaintainHistory = false;
 		m_bPrintReadableFsm = false;
 		m_strHistoryFolder = "./";
 		m_bFiniteStateMachineGiven = false;
+		m_strMethod = "";
 	}
 
 	/****************************************/
@@ -45,19 +46,20 @@ namespace argos {
 			GetNodeAttributeOrDefault(t_node, "history", m_bMaintainHistory, m_bMaintainHistory);
 			GetNodeAttributeOrDefault(t_node, "hist-folder", m_strHistoryFolder, m_strHistoryFolder);
 			GetNodeAttributeOrDefault(t_node, "readable", m_bPrintReadableFsm, m_bPrintReadableFsm);
+			GetNodeAttributeOrDefault(t_node, "method", m_strMethod, m_strMethod);
 		} catch (CARGoSException& ex) {
 			THROW_ARGOSEXCEPTION_NESTED("Error parsing <params>", ex);
 		}
 
-		m_unRobotID = atoi(GetId().substr(5, 6).c_str());
-		m_pcRobotState->SetRobotIdentifier(m_unRobotID);
+		//m_unRobotID = atoi(GetId().substr(5, 6).c_str());
+		//m_pcRobotState->SetRobotIdentifier(m_unRobotID);
 
 		/*
 		 * If a FSM configuration is given as parameter of the experiment file, create a FSM from it
 		 */
 		if (m_strFsmConfiguration.compare("") != 0 && !m_bFiniteStateMachineGiven) {
 			m_pcFsmBuilder = new AutoMoDeFsmBuilder();
-			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strFsmConfiguration));
+			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strFsmConfiguration,m_strMethod));
 			if (m_bMaintainHistory) {
 				m_pcFiniteStateMachine->SetHistoryFolder(m_strHistoryFolder);
 				m_pcFiniteStateMachine->MaintainHistory();
@@ -79,8 +81,8 @@ namespace argos {
 			m_pcProximitySensor = GetSensor<CCI_EPuckProximitySensor>("epuck_proximity");
 			m_pcLightSensor = GetSensor<CCI_EPuckLightSensor>("epuck_light");
 			m_pcGroundSensor = GetSensor<CCI_EPuckGroundSensor>("epuck_ground");
-			 m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
-			 m_pcCameraSensor = GetSensor<CCI_EPuckOmnidirectionalCameraSensor>("epuck_omnidirectional_camera");
+			m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
+			m_pcCameraSensor = GetSensor<CCI_EPuckOmnidirectionalCameraSensor>("epuck_omnidirectional_camera");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing a Sensor!\n";
 		}
@@ -108,7 +110,6 @@ namespace argos {
 		 */
 		if(m_pcRabSensor != NULL){
 			const CCI_EPuckRangeAndBearingSensor::TPackets& packets = m_pcRabSensor->GetPackets();
-			//m_pcRobotState->SetNumberNeighbors(packets.size());
 			m_pcRobotState->SetRangeAndBearingMessages(packets);
 		}
 		if (m_pcGroundSensor != NULL) {
@@ -137,7 +138,6 @@ namespace argos {
 		}
 		if (m_pcRabActuator != NULL) {
 			UInt8 data[4];
-			//data[0] = m_pcRobotState->GetRobotIdentifier();
 			data[0] = m_unRobotID;
 			data[1] = m_pcRobotState->GetMessageToSend();
 			data[2] = 0;
@@ -179,6 +179,24 @@ namespace argos {
 		m_pcFiniteStateMachine->SetRobotDAO(m_pcRobotState);
 		m_pcFiniteStateMachine->Init();
 		m_bFiniteStateMachineGiven = true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	void AutoMoDeController::SetRobotDAO(std::string str_method) {
+		if (str_method == "1" || str_method == "1E" ||
+			str_method == "1X" || str_method == "1EX") {
+				m_pcRobotState = new ReferenceModel2Dot0();
+		}
+		else if (str_method == "2" || str_method == "2E") {
+				m_pcRobotState = new ReferenceModel2Dot3();
+		}
+		else {
+			LOGERR<<"Error while initializing robot DAO!"<< std::endl;
+		}
+		m_unRobotID = atoi(GetId().substr(5, 6).c_str());
+		m_pcRobotState->SetRobotIdentifier(m_unRobotID);
 	}
 
 	/****************************************/

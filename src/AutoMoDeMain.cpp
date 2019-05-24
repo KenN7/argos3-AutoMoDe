@@ -44,6 +44,7 @@ int main(int n_argc, char** ppch_argv) {
 	std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
 	UInt32 unSeed = 0;
+	std::string strMethod = "1";
 
 	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
 
@@ -76,6 +77,8 @@ int main(int n_argc, char** ppch_argv) {
 
 		cACLAP.AddArgument<UInt32>('s', "seed", "", unSeed);
 
+		cACLAP.AddArgument<std::string>('m', "method", "", strMethod);
+
 		// Parse command line without taking the configuration of the FSM into account
 		cACLAP.Parse(n_argc, ppch_argv);
 
@@ -89,7 +92,7 @@ int main(int n_argc, char** ppch_argv) {
 				// Creation of the finite state machine.
 
 				AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
-				AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
+				AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm,strMethod);
 
 				// If the URL of the finite state machine is requested, display it.
 				if (bReadableFSM) {
@@ -110,6 +113,7 @@ int main(int n_argc, char** ppch_argv) {
 					vecFsm.push_back(pcPersonalFsm);
 					try {
 						AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
+						cController.SetRobotDAO(strMethod);
 						cController.SetFiniteStateMachine(pcPersonalFsm);
 						cController.SetHistoryFlag(bHistory);
 					} catch (std::exception& ex) {

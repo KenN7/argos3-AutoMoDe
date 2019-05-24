@@ -30,6 +30,30 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
+	void AutoMoDeCondition::Init() {
+		m_unMessage = 0;
+		if (m_strMethod == "2E" || m_strMethod == "1E" || m_strMethod == "1EX") {
+			std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
+		    if (itMes != m_mapParameters.end()) {
+		      m_unMessage = itMes->second;
+		    } else {
+		      LOGERR << "[FATAL] Missing parameter m for the following condition:" << m_strLabel << std::endl;
+		      THROW_ARGOSEXCEPTION("Missing Parameter");
+			}
+			std::map<std::string, Real>::iterator itThres = m_mapParameters.find("t");
+			if (itThres != m_mapParameters.end()) {
+			  m_unThreshold = itThres->second;
+			} else {
+			  LOGERR << "[FATAL] Missing parameter t for the following condition:" << m_strLabel << std::endl;
+			  THROW_ARGOSEXCEPTION("Missing Parameter");
+			}
+		}
+
+	}
+
+	/****************************************/
+	/****************************************/
+
 	void AutoMoDeCondition::AddParameter(const std::string& str_identifier, const Real& f_value) {
 		m_mapParameters.insert(std::pair<std::string, Real>(str_identifier, f_value));
 	}
@@ -94,6 +118,21 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
+	void AutoMoDeCondition::SetMethod(const std::string& str_method) {
+		m_strMethod = str_method;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	const std::string& AutoMoDeCondition::GetMethod() const {
+		return m_strMethod;
+	}
+
+
+	/****************************************/
+	/****************************************/
+
 	void AutoMoDeCondition::SetIdentifier(const UInt32& un_id) {
 		m_unIdentifier = un_id;
 	}
@@ -115,15 +154,27 @@ namespace argos {
   /****************************************/
 	/****************************************/
 
-  void AutoMoDeCondition::SetRobotDAO(EpuckDAO* pc_robot_dao) {
-      m_pcRobotDAO = pc_robot_dao;
-  }
+    void AutoMoDeCondition::SetRobotDAO(EpuckDAO* pc_robot_dao) {
+        m_pcRobotDAO = pc_robot_dao;
+    }
 
 	/****************************************/
 	/****************************************/
 
-  bool AutoMoDeCondition::EvaluateBernoulliProbability(const Real& f_probability) const {
-		return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
+	bool AutoMoDeCondition::EvaluateBernoulliProbability(Real f_probability) {
+		if (m_unMessage > 0) {
+		  	SInt8 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unMessage);
+			if (unNumberNeighbors > m_unThreshold) {
+  				return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
+			}
+		}
+		else if (m_unMessage == 0) {
+		  return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
+		}
+		else {
+		  LOG << "Should not happen!" << std::endl;
+		  return 0;
+		}
 	}
 
 }

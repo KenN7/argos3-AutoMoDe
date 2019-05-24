@@ -66,6 +66,20 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
+	void AutoMoDeBehaviour::SetMethod(const std::string& str_method) {
+		m_strMethod = str_method;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	const std::string& AutoMoDeBehaviour::GetMethod() const {
+		return m_strMethod;
+	}
+
+	/****************************************/
+	/****************************************/
+
 	const std::string AutoMoDeBehaviour::GetDOTDescription() {
 		std::stringstream ss;
 		ss << m_strLabel;

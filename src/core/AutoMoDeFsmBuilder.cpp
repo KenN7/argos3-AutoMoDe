@@ -27,20 +27,21 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(const std::string& str_fsm_config) {
+	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(const std::string& str_fsm_config, std::string str_method) {
 		std::istringstream iss(str_fsm_config);
 		std::vector<std::string> tokens;
 		copy(std::istream_iterator<std::string>(iss),
 			std::istream_iterator<std::string>(),
 			std::back_inserter(tokens));
-		return BuildFiniteStateMachine(tokens);
+		return BuildFiniteStateMachine(tokens,str_method);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config) {
+	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config, std::string str_method) {
 		cFiniteStateMachine = new AutoMoDeFiniteStateMachine();
+		m_strMethod = str_method;
 
 		std::vector<std::string>::iterator it;
 		try {
@@ -112,12 +113,17 @@ namespace argos {
 		}
 		cNewBehaviour->SetIndex(unBehaviourIndex);
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);
+		cNewBehaviour->SetMethod(m_strMethod);
 
 		// Checking for parameters
-		std::string vecPossibleParameters[] = {"rwm", "att", "rep", "brd", "mes"};
-		UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
-		for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
-			std::string strCurrentParameter = vecPossibleParameters[i];
+		std::vector<std::string> vecPossibleParameters = {"rwm", "att", "rep", "brd"};
+		if (m_strMethod == "2" || m_strMethod == "2E") {
+			vecPossibleParameters.push_back("mes");
+		}
+		//UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
+		//for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
+		for (auto strCurrentParameter : vecPossibleParameters) {
+			//std::string strCurrentParameter = vecPossibleParameters[i];
 			std::ostringstream oss;
 			oss << "--" <<strCurrentParameter << unBehaviourIndex;
 			it = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
@@ -212,13 +218,21 @@ namespace argos {
 			cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);
 			cNewCondition->SetIndex(un_condition_index);
 			cNewCondition->SetIdentifier(unConditionIdentifier);
+			cNewCondition->SetMethod(m_strMethod);
 
 
 			// Checking for parameters
-			std::string vecPossibleParameters[] = {"p", "w", "m"};
-			UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
-			for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
-				std::string strCurrentParameter = vecPossibleParameters[i];
+			std::vector<std::string> vecPossibleParameters = {"p", "w", "m"};
+			if (m_strMethod == "2" || m_strMethod == "2E") {
+				vecPossibleParameters.push_back("mes");
+			}
+			if (m_strMethod == "2E" || m_strMethod == "1E" || m_strMethod == "1EX") {
+				vecPossibleParameters.push_back("t");
+			}
+			//UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
+			//for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
+			for (auto strCurrentParameter : vecPossibleParameters) {
+				//std::string strCurrentParameter = vecPossibleParameters[i];
 				ss.str(std::string());
 				ss << "--" << strCurrentParameter << un_initial_state_index << "x" << un_condition_index;
 				it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());

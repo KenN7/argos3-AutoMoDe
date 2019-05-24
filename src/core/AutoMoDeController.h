@@ -16,6 +16,7 @@
 
 #include <argos3/demiurge/epuck-dao/EpuckDAO.h>
 #include <argos3/demiurge/epuck-dao/ReferenceModel2Dot3.h>
+#include <argos3/demiurge/epuck-dao/ReferenceModel2Dot0.h>
 
 
 #include "./AutoMoDeFiniteStateMachine.h"
@@ -67,6 +68,8 @@ namespace argos{
 			 * Setter for the AutoMoDeFiniteStateMachine.
 			 */
 			void SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_fine_state_machine);
+
+			void SetRobotDAO(std::string str_method);
 
 			void SetHistoryFlag(bool b_history_flag);
 
@@ -120,6 +123,12 @@ namespace argos{
 			 * The path to where the history shall be stored.
 			 */
 			std::string m_strHistoryFolder;
+
+			/*
+			 * The method to use in controller
+			 */
+
+			std::string m_strMethod;
 
 			/*
 			 * Pointer to the object in charge of creating the AutoMoDeFiniteStateMachine.

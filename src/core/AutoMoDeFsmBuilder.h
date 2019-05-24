@@ -38,13 +38,13 @@ namespace argos {
 			 * Creates an AutoMoDeFiniteStateMachine based on a configuration as a vector of strings.
 			 * This method should be called when the FSM is created from the AutoMoDeMain.cpp.
 			 */
-			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config);
+			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config, std::string str_method);
 
 			/**
 			 * Creates an AutoMoDeFiniteStateMachine based on a configuration as a string.
 			 * This method should be called when the FSM is created from the AutoMoDeController.cpp.
 			 */
-			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(const std::string& str_fsm_config);
+			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(const std::string& str_fsm_config, std::string str_method);
 
 			/*
 			 * Class destructor.
@@ -68,13 +68,16 @@ namespace argos {
 
 			/**
 			 * Creates a list containing the indexes of the behaviours reachable from a given state.
-			 * Added for compatibility with irace interdependent parameters. 
+			 * Added for compatibility with irace interdependent parameters.
 			 */
 			const std::vector<UInt32> GetPossibleDestinationBehaviour(const UInt32& un_initial_state_index);
 
 			UInt32 m_unNumberStates;
+			std::string m_strMethod;
 
 			AutoMoDeFiniteStateMachine* cFiniteStateMachine;
+
+
 
 	};
 }
