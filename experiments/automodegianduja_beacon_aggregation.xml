@@ -13,7 +13,7 @@
   <!-- ****************** -->
   <loop_functions library="/home/ken/depots/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_beacon_aggregation_loopfunc.so"
    label="gianduja_beacon_aggregation_loop_functions">
-   <params dist_radius="1.2" number_robots="20"/>
+   <params dist_radius="1.2" number_robots="20" mes="3"/>
   </loop_functions>
 
   <!-- *************** -->
