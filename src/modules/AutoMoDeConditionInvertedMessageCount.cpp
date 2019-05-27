@@ -29,7 +29,8 @@
 		m_unFromBehaviourIndex = pc_condition->GetOrigin();
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
-    Init();
+        m_strMethod = pc_condition->GetMethod();
+        Init();
 	}
 
 	/****************************************/
@@ -43,24 +44,20 @@
 	/****************************************/
 
 	bool AutoMoDeConditionInvertedMessageCount::Verify() {
-		// SInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unParameterMes);
-		// Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
-		// return EvaluateBernoulliProbability(fProbability);
-        SInt8 unNumberNeighbors = 0;
-        if (m_unParameterMes > 0) {
-            unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unParameterMes);
-        }
-
-
-        //Real fProbability = (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
-
-        if (unNumberNeighbors < m_fParameterEta) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-
+        SInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unParameterMes);
+            if (m_strMethod == "2") {
+                if (unNumberNeighbors < m_fParameterEta && m_unParameterMes > 0) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+            else if (m_strMethod == "1" || m_strMethod == "1X") {
+                Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
+                return EvaluateBernoulliProbability(fProbability);
+            }
+        return 0;
 	}
 
 	/****************************************/

@@ -120,10 +120,7 @@ namespace argos {
 		if (m_strMethod == "2" || m_strMethod == "2E") {
 			vecPossibleParameters.push_back("mes");
 		}
-		//UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
-		//for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 		for (auto strCurrentParameter : vecPossibleParameters) {
-			//std::string strCurrentParameter = vecPossibleParameters[i];
 			std::ostringstream oss;
 			oss << "--" <<strCurrentParameter << unBehaviourIndex;
 			it = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
@@ -229,10 +226,7 @@ namespace argos {
 			if (m_strMethod == "2E" || m_strMethod == "1E" || m_strMethod == "1EX") {
 				vecPossibleParameters.push_back("t");
 			}
-			//UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
-			//for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 			for (auto strCurrentParameter : vecPossibleParameters) {
-				//std::string strCurrentParameter = vecPossibleParameters[i];
 				ss.str(std::string());
 				ss << "--" << strCurrentParameter << un_initial_state_index << "x" << un_condition_index;
 				it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());

@@ -34,7 +34,8 @@
 		m_unFromBehaviourIndex = pc_condition->GetOrigin();
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
-    Init();
+        m_strMethod = pc_condition->GetMethod();
+        Init();
 	}
 
   /****************************************/

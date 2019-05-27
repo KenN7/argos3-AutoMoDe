@@ -25,6 +25,7 @@ namespace argos {
 		m_unIndex = pc_behaviour->GetIndex();
 		m_unIdentifier = pc_behaviour->GetIdentifier();
 		m_mapParameters = pc_behaviour->GetParameters();
+		m_strMethod = pc_behaviour->GetMethod();
 		Init();
 	}
 
@@ -78,7 +79,7 @@ namespace argos {
 		}
 		m_unAttractiveMessage = 85; //default value for 1
 
-		if (m_strMethod == "1E" || m_strMethod == "1EX" || m_strMethod == "2E") {
+		if (m_strMethod == "2" || m_strMethod == "2E") {
 			std::map<std::string, Real>::iterator itMes = m_mapParameters.find("mes");
 			if ( itMes != m_mapParameters.end() ) {
 				m_unAttractiveMessage = itMes->second;
