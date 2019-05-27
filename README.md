@@ -4,7 +4,7 @@ ARGoS3-AutoMoDe-Gianduja
 
 All useful information about the AutoMoDe-Gianduja package, including
 installation and utilization instructions, are regrouped in the
-following technical report [[[techrep]]]. Please cite this report if
+following technical report [techrep](#bibliography). Please cite this report if
 you use the AutoMoDe-Gianduja or any ARGoS3-AutoMoDe package.
 
 ## Package content
@@ -12,9 +12,9 @@ you use the AutoMoDe-Gianduja or any ARGoS3-AutoMoDe package.
 - bin :: This empty folder will contain the executable automode_main
 after compilation.
 - experiments :: The folder where all experiments configuration files
-described in [[[gianduja]]] (.argos or .xml) are located
+described in [gianduja](#bibliography) (.argos or .xml) are located
     - chocolate :: The experiment configuration files of the
-        experiments described in [[[chocolate]]]
+        experiments described in [chocolate](#bibliography)
     - example :: The experiment configuration file used as example in
         the technical report of the package.
 - optimization :: The folder where one should place files regarding
@@ -24,7 +24,7 @@ described in [[[gianduja]]] (.argos or .xml) are located
 - src :: The source files of AutoMoDe-Gianduja package.
     - cmake :: The .cmake files for ARGoS3.
     - core :: The core classes of ARGoS3-AutoMoDe.
-    - modules :: The behaviors and conditions modules described in [[[gianduja]]]
+    - modules :: The behaviors and conditions modules described in [gianduja](#bibliography)
 - AutoMoDeMain.cpp :: The main procedure to launch ARGoS3-AutoMoDe.
 
 
@@ -95,16 +95,14 @@ For example (in the `optimization/` folder):
     irace --exec-dir=aggregation --seed 1234 --scenario scenario_agg.txt
 
 This will run the optimization algorithm for 200k simulation in order
-to train for the aggregation mission (see [[[gianduja]]] for details
+to train for the aggregation mission (see [gianduja](### Bibliography) for details
 on missions).
 
 
 
-References
-----------
+## References
+### Bibliography
 
-[bibliography]
-
-- [[[techrep]]] Ligot, A., Hasselmann, K., Delhaisse, B., Garattoni, L., Francesca, G., & Birattari, M. (2017). AutoMoDe, NEAT, and EvoStick: implementations for the E-puck robot in ARGoS3. Technical report TR/IRIDIA/2017-002, IRIDIA, Université libre de Bruxelles, Belgium.
-- [[[chocolate]]] Francesca, G., Brambilla, M., Brutschy, A., Garattoni, L., Miletitch, R., Podevijn, G., ... & Mascia, F. (2015). AutoMoDe-Chocolate: automatic design of control software for robot swarms. Swarm Intelligence, 9(2-3), 125-152.
-- [[[gianduja]]] Hasselmann K., Robert F., Birattari M. (2018) Automatic Design of Communication-Based Behaviors for Robot Swarms. In: Dorigo M., Birattari M., Blum C., Christensen A., Reina A., Trianni V. (eds) Swarm Intelligence. ANTS 2018. Lecture Notes in Computer Science, vol 11172. Springer, Cham
+- [techrep] Ligot, A., Hasselmann, K., Delhaisse, B., Garattoni, L., Francesca, G., & Birattari, M. (2017). AutoMoDe, NEAT, and EvoStick: implementations for the E-puck robot in ARGoS3. Technical report TR/IRIDIA/2017-002, IRIDIA, Université libre de Bruxelles, Belgium.
+- [chocolate] Francesca, G., Brambilla, M., Brutschy, A., Garattoni, L., Miletitch, R., Podevijn, G., ... & Mascia, F. (2015). AutoMoDe-Chocolate: automatic design of control software for robot swarms. Swarm Intelligence, 9(2-3), 125-152.
+- [gianduja] Hasselmann K., Robert F., Birattari M. (2018) Automatic Design of Communication-Based Behaviors for Robot Swarms. In: Dorigo M., Birattari M., Blum C., Christensen A., Reina A., Trianni V. (eds) Swarm Intelligence. ANTS 2018. Lecture Notes in Computer Science, vol 11172. Springer, Cham
