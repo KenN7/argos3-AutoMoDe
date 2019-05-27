@@ -4,7 +4,7 @@ ARGoS3-AutoMoDe-Gianduja
 
 All useful information about the AutoMoDe-Gianduja package, including
 installation and utilization instructions, are regrouped in the
-following technical report [techrep](#bibliography). Please cite this report if
+following technical report ([techrep](#bibliography)). Please cite this report if
 you use the AutoMoDe-Gianduja or any ARGoS3-AutoMoDe package.
 
 ## Package content
