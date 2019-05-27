@@ -9,23 +9,23 @@ you use the AutoMoDe-Gianduja or any ARGoS3-AutoMoDe package.
 
 ## Package content
 
-- bin :: This empty folder will contain the executable automode_main
+- `bin` This empty folder will contain the executable automode_main
 after compilation.
-- experiments :: The folder where all experiments configuration files
+- `experiments` The folder where all experiments configuration files
 described in [gianduja](#bibliography) (.argos or .xml) are located
-    - chocolate :: The experiment configuration files of the
+    - `chocolate` The experiment configuration files of the
         experiments described in [chocolate](#bibliography)
-    - example :: The experiment configuration file used as example in
+    - `example` The experiment configuration file used as example in
         the technical report of the package.
-- optimization :: The folder where one should place files regarding
+- `optimization` The folder where one should place files regarding
     the optimization algorithm used (including grammar generator for
     the irace algorithm)
-    - example :: The necessary elements to launch irace on a small example described in the technical report.
-- src :: The source files of AutoMoDe-Gianduja package.
-    - cmake :: The .cmake files for ARGoS3.
-    - core :: The core classes of ARGoS3-AutoMoDe.
-    - modules :: The behaviors and conditions modules described in [gianduja](#bibliography)
-- AutoMoDeMain.cpp :: The main procedure to launch ARGoS3-AutoMoDe.
+    - `example` The necessary elements to launch irace on a small example described in the technical report.
+- `src` The source files of AutoMoDe-Gianduja package.
+    - `cmake` The .cmake files for ARGoS3.
+    - `core` The core classes of ARGoS3-AutoMoDe.
+    - `modules` The behaviors and conditions modules described in [gianduja](#bibliography)
+- `AutoMoDeMain.cpp` :: The main procedure to launch ARGoS3-AutoMoDe.
 
 
 ## Installation
@@ -40,7 +40,7 @@ described in [gianduja](#bibliography) (.argos or .xml) are located
     $ cd argos3-AutoMoDe
     $ git checkout giandujaNeo
     $ mkdir build
-    $ cmake ../src
+    $ cmake ..
     $ make
 
 Once compiled, the `bin/` folder should contain the `automode_main`
