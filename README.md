@@ -95,7 +95,7 @@ For example (in the `optimization/` folder):
     irace --exec-dir=aggregation --seed 1234 --scenario scenario_agg.txt
 
 This will run the optimization algorithm for 200k simulation in order
-to train for the aggregation mission (see [gianduja](### Bibliography) for details
+to train for the aggregation mission (see [gianduja](#bibliography) for details
 on missions).
 
 
