@@ -16,7 +16,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeController::AutoMoDeController() {
-		m_pcRobotState = new AutoMoDeRobotDAO();
+		m_pcRobotState = new ReferenceModel1Dot2();
 		m_unTimeStep = 0;
 		m_strFsmConfiguration = "";
 		m_bMaintainHistory = false;
@@ -30,7 +30,9 @@ namespace argos {
 
 	AutoMoDeController::~AutoMoDeController() {
 		delete m_pcRobotState;
-		delete m_pcFsmBuilder;
+		if (m_strFsmConfiguration.compare("") != 0) {
+			delete m_pcFsmBuilder;
+		}
 	}
 
 	/****************************************/
@@ -92,16 +94,9 @@ namespace argos {
 		}
 
 		/*
-		 * Constantly send range-and-bearing messages containing the robot integer identifier.
+		 * Starts actuation.
 		 */
-		if (m_pcRabActuator != NULL) {
-			UInt8 data[4];
-			data[0] = m_unRobotID;
-			data[1] = 0;
-			data[2] = 0;
-			data[3] = 0;
-			m_pcRabActuator->SetData(data);
-		}
+		 InitializeActuation();
 	}
 
 	/****************************************/
@@ -162,6 +157,8 @@ namespace argos {
 	void AutoMoDeController::Reset() {
 		m_pcFiniteStateMachine->Reset();
 		m_pcRobotState->Reset();
+		// Restart actuation.
+		InitializeActuation();
 	}
 
 	/****************************************/
@@ -172,6 +169,32 @@ namespace argos {
 		m_pcFiniteStateMachine->SetRobotDAO(m_pcRobotState);
 		m_pcFiniteStateMachine->Init();
 		m_bFiniteStateMachineGiven = true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	void AutoMoDeController::SetHistoryFlag(bool b_history_flag) {
+		if (b_history_flag) {
+			m_pcFiniteStateMachine->MaintainHistory();
+		}
+	}
+
+	/****************************************/
+	/****************************************/
+
+	void AutoMoDeController::InitializeActuation() {
+		/*
+		 * Constantly send range-and-bearing messages containing the robot integer identifier.
+		 */
+		if (m_pcRabActuator != NULL) {
+			UInt8 data[4];
+			data[0] = m_unRobotID;
+			data[1] = 0;
+			data[2] = 0;
+			data[3] = 0;
+			m_pcRabActuator->SetData(data);
+		}
 	}
 
 	REGISTER_CONTROLLER(AutoMoDeController, "automode_controller");

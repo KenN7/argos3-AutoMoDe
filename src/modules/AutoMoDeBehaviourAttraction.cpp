@@ -49,20 +49,17 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourAttraction::ControlStep() {
-		CCI_EPuckRangeAndBearingSensor::TPackets sLastPackets = m_pcRobotDAO->GetRangeAndBearingMessages();
-	 	CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
-		CVector2 sRabVectorSum(0,CRadians::ZERO);
-		CVector2 sProxVectorSum(0,CRadians::ZERO);
+		CVector2 sRabVector(0,CRadians::ZERO);
+		CVector2 sProxVector(0,CRadians::ZERO);
 		CVector2 sResultVector(0,CRadians::ZERO);
+		CCI_EPuckRangeAndBearingSensor::SReceivedPacket cRabReading = m_pcRobotDAO->GetAttractionVectorToNeighbors(m_unAttractionParameter);
 
-		for (it = sLastPackets.begin(); it != sLastPackets.end(); it++) {
-			if ((*it)->Data[0] != (UInt8) m_pcRobotDAO->GetRobotIdentifier()) {
-				sRabVectorSum += CVector2(m_unAttractionParameter / ((*it)->Range + 1),(*it)->Bearing.SignedNormalize());
-			}
+		if (cRabReading.Range > 0.0f) {
+			sRabVector = CVector2(cRabReading.Range, cRabReading.Bearing);
 		}
 
-		sProxVectorSum = SumProximityReadings(m_pcRobotDAO->GetProximityInput());
-		sResultVector = sRabVectorSum - 6*sProxVectorSum;
+		sProxVector = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
+		sResultVector = m_unAttractionParameter*sRabVector - 6*sProxVector;
 
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);

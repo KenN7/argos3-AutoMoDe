@@ -175,13 +175,14 @@ namespace argos {
 
 	const std::string AutoMoDeFiniteStateMachine::GetReadableFormat() {
 		std::stringstream ssUrl;
-		ssUrl << "http://chart.googleapis.com/chart?cht=gv:dot&chl=digraph finite_state_machine{rankir=LR;" ;
+		//ssUrl << "http://chart.googleapis.com/chart?cht=gv:dot&chl=digraph finite_state_machine{rankir=LR;" ;
+		ssUrl << "https://dreampuf.github.io/GraphvizOnline/#digraph finite_state_machine{rankdir=LR;" ;
 		ssUrl << FillWithInitialState();
 		ssUrl << FillWithNonInitialStates();
 		ssUrl << FillWithConditions();
 		ssUrl << "}" ;
 		std::string strUrl = ssUrl.str();
-		std::replace(strUrl.begin(), strUrl.end(), ' ', '+');
+		//std::replace(strUrl.begin(), strUrl.end(), ' ', '+');
 		return strUrl;
 	}
 
@@ -191,7 +192,7 @@ namespace argos {
 	void AutoMoDeFiniteStateMachine::MaintainHistory() {
 		m_bMaintainHistory = true;
 		std::ostringstream sHistoryPath;
-		sHistoryPath << m_strHistoryFolder << "/fsm_history_" <<  m_pcRobotDAO->GetRobotIdentifier() << ".txt";
+		sHistoryPath << m_strHistoryFolder << "./fsm_history_" <<  m_pcRobotDAO->GetRobotIdentifier() << ".txt";
 		m_pcHistory = new AutoMoDeFsmHistory(sHistoryPath.str());
 	}
 
@@ -325,7 +326,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeFiniteStateMachine::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_DAO) {
+	void AutoMoDeFiniteStateMachine::SetRobotDAO(EpuckDAO* pc_robot_DAO) {
 		m_pcRobotDAO = pc_robot_DAO;
 	}
 

@@ -74,14 +74,22 @@ namespace argos {
 		CRange<CRadians> cLeftHemisphere(CRadians::ZERO, CRadians::PI);
 		CRange<CRadians> cRightHemisphere(CRadians::PI, CRadians::TWO_PI);
 		CRadians cNormalizedVectorToFollow = c_vector_to_follow.Angle().UnsignedNormalize();
-
 		// Compute relative wheel velocity
+		// if (c_vector_to_follow.GetX() != 0 || c_vector_to_follow.GetY() != 0) {
+		// 	if (cLeftHemisphere.WithinMinBoundExcludedMaxBoundExcluded(cNormalizedVectorToFollow)) {
+		// 		fRightVelocity = 1;
+		// 		fLeftVelocity = Max<Real>(-0.5f, Cos(cNormalizedVectorToFollow));
+		// 	} else {
+		// 		fRightVelocity = Max<Real>(-0.5f, Cos(cNormalizedVectorToFollow));
+		// 		fLeftVelocity = 1;
+		// 	}
+		// }
 		if (c_vector_to_follow.GetX() != 0 || c_vector_to_follow.GetY() != 0) {
 			if (cLeftHemisphere.WithinMinBoundExcludedMaxBoundExcluded(cNormalizedVectorToFollow)) {
 				fRightVelocity = 1;
-				fLeftVelocity = Max<Real>(-0.5f, Cos(cNormalizedVectorToFollow));
+				fLeftVelocity = Cos(cNormalizedVectorToFollow);
 			} else {
-				fRightVelocity = Max<Real>(-0.5f, Cos(cNormalizedVectorToFollow));
+				fRightVelocity = Cos(cNormalizedVectorToFollow);
 				fLeftVelocity = 1;
 			}
 		}
@@ -135,7 +143,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviour::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao) {
+	void AutoMoDeBehaviour::SetRobotDAO(EpuckDAO* pc_robot_dao) {
 		m_pcRobotDAO = pc_robot_dao;
 	}
 

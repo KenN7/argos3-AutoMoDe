@@ -13,14 +13,15 @@ function print_syntax() {
 # Write description of state
 function write_state() {
   INDEX=$1
+  NB_TRANS=$2
   echo "S$INDEX     \"--s$INDEX \"  c   (0,1,2,3,4,5) | as.numeric(NumStates)>$INDEX " >> ${TXT_FILE}
   echo "RWM$INDEX   \"--rwm$INDEX \"  i (1,100) | as.numeric(S$INDEX)==0" >> ${TXT_FILE}
   echo "ATT$INDEX   \"--att$INDEX \"  r (1,5) | as.numeric(S$INDEX)==4" >> ${TXT_FILE}
   echo "REP$INDEX   \"--rep$INDEX \"  r (1,5) | as.numeric(S$INDEX)==5" >> ${TXT_FILE}
   if [ ${INDEX} == 0 ]; then
-    echo "NumConnections$INDEX \"--n$INDEX \" i (1,4) | as.numeric(NumStates)>1" >> ${TXT_FILE}
+    echo "NumConnections$INDEX \"--n$INDEX \" i (1,$NB_TRANS) | as.numeric(NumStates)>1" >> ${TXT_FILE}
   else
-    echo "NumConnections$INDEX \"--n$INDEX \" i (1,4) | as.numeric(NumStates)>${INDEX}" >> ${TXT_FILE}
+    echo "NumConnections$INDEX \"--n$INDEX \" i (1,$NB_TRANS) | as.numeric(NumStates)>${INDEX}" >> ${TXT_FILE}
   fi
 }
 
@@ -66,7 +67,7 @@ truncate -s 0 $TXT_FILE
 echo "NumStates   \"--nstates \"   i (1,$1)" >> $TXT_FILE
 for STATE in $(seq 0 $MAX_NBR_STATES)
 do
-  write_state $STATE
+  write_state $STATE $2
   for CONNECTION in $(seq 0 $MAX_NBR_CONNECTIONS)
   do
     write_connection $STATE $CONNECTION

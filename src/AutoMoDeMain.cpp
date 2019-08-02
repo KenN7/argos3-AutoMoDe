@@ -17,8 +17,9 @@
 
 #include "./core/AutoMoDeFiniteStateMachine.h"
 #include "./core/AutoMoDeFsmBuilder.h"
-#include "./core/AutoMoDeLoopFunctions.h"
 #include "./core/AutoMoDeController.h"
+
+#include <argos3/demiurge/loop-functions/CoreLoopFunctions.h>
 
 using namespace argos;
 
@@ -37,6 +38,7 @@ const std::string ExplainParameters() {
  */
 int main(int n_argc, char** ppch_argv) {
 
+	bool bHistory = false;
 
 	bool bReadableFSM = false;
 	std::vector<std::string> vecConfigFsm;
@@ -69,6 +71,8 @@ int main(int n_argc, char** ppch_argv) {
 		// Configure the command line options
 		CARGoSCommandLineArgParser cACLAP;
 		cACLAP.AddFlag('r', "readable-fsm", "", bReadableFSM);
+
+		cACLAP.AddFlag('t', "history", "", bHistory);
 
 		cACLAP.AddArgument<UInt32>('s', "seed", "", unSeed);
 
@@ -107,6 +111,7 @@ int main(int n_argc, char** ppch_argv) {
 					try {
 						AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
 						cController.SetFiniteStateMachine(pcPersonalFsm);
+						cController.SetHistoryFlag(bHistory);
 					} catch (std::exception& ex) {
 						LOGERR << "Error while casting: " << ex.what() << std::endl;
 					}
@@ -115,8 +120,7 @@ int main(int n_argc, char** ppch_argv) {
 				cSimulator.Execute();
 
 				// Retrieval of the score of the swarm driven by the Finite State Machine
-
-				AutoMoDeLoopFunctions& cLoopFunctions = dynamic_cast<AutoMoDeLoopFunctions&> (cSimulator.GetLoopFunctions());
+				CoreLoopFunctions& cLoopFunctions = dynamic_cast<CoreLoopFunctions&> (cSimulator.GetLoopFunctions());
 				Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
 				std::cout << "Score " << fObjectiveFunction << std::endl;
 
