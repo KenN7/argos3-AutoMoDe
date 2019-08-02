@@ -161,13 +161,17 @@ namespace argos {
 
 		std::stringstream ss;
 		ss << "--n" << un_initial_state_index << "x" << un_condition_index;
-		std::vector<UInt32> vecPossibleDestinationIndex = GetPossibleDestinationBehaviour(un_initial_state_index);
 		std::vector<std::string>::iterator it;
 		it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());
 
 		// TODO: Check here whether unToBehaviour is smaller than the total number of states.
-		UInt32 unIndexBehaviour = atoi((*(it+1)).c_str());
-		UInt32 unToBehaviour = vecPossibleDestinationIndex.at(unIndexBehaviour);
+
+		//std::vector<UInt32> vecPossibleDestinationIndex = GetPossibleDestinationBehaviour(un_initial_state_index);
+		//UInt32 unIndexBehaviour = atoi((*(it+1)).c_str());
+		//UInt32 unToBehaviour = vecPossibleDestinationIndex.at(unIndexBehaviour);
+
+		UInt32 unToBehaviour = atoi((*(it+1)).c_str());
+
 		if (unToBehaviour < m_unNumberStates) {
 			ss.str(std::string());
 			ss << "--c" << un_initial_state_index << "x" << un_condition_index;
