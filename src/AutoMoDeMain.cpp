@@ -27,6 +27,7 @@ const std::string ExplainParameters() {
 	std::string strExplanation = "Missing finite state machine configuration. The possible parameters are: \n\n"
 		" -r | --readable-fsm \t Prints an URL containing a DOT representation of the finite state machine [OPTIONAL]. \n"
 		" -s | --seed \t The seed for the ARGoS simulator [OPTIONAL] \n"
+        " -f | --loopfunc \t The label loop function to use (muts be in .so file declared in xml) [OPTIONAL]"
 		" --fsm-config CONF \t The finite state machine description [MANDATORY]\n"
 		"\n The description of the finite state machine should be placed at the end of the command line, after the other parameters.";
 	return strExplanation;
@@ -36,6 +37,24 @@ const std::string ExplainParameters() {
  * @brief
  *
  */
+
+CLoopFunctions* LoadCustomLoopFunction(TConfigurationNode& cConfigRoot, CSimulator& cSimulator, std::string str_loop_func) {
+    CLoopFunctions* cLoopFunctions;
+    try {
+        std::string strLibrary;
+        GetNodeAttributeOrDefault(cConfigRoot, "library", strLibrary, strLibrary);
+        if(! strLibrary.empty()) {
+            CDynamicLoading::LoadLibrary(strLibrary);
+        }
+        cLoopFunctions = CFactory<CLoopFunctions>::New(str_loop_func);
+    }
+    catch(CARGoSException& ex) {
+        THROW_ARGOSEXCEPTION_NESTED("Error initializing loop functions", ex);
+    }
+    return cLoopFunctions;
+}
+
+
 int main(int n_argc, char** ppch_argv) {
 
 	bool bHistory = false;
@@ -44,6 +63,7 @@ int main(int n_argc, char** ppch_argv) {
 	std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
 	UInt32 unSeed = 0;
+    std::string strLoopFunction;
 
 	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
 
@@ -75,6 +95,7 @@ int main(int n_argc, char** ppch_argv) {
 		cACLAP.AddFlag('t', "history", "", bHistory);
 
 		cACLAP.AddArgument<UInt32>('s', "seed", "", unSeed);
+        cACLAP.AddArgument<std::string>('f', "loopfunc", "", strLoopFunction);
 
 		// Parse command line without taking the configuration of the FSM into account
 		cACLAP.Parse(n_argc, ppch_argv);
@@ -99,8 +120,17 @@ int main(int n_argc, char** ppch_argv) {
 
 				// Setting random seed. Only works with modified version of ARGoS3.
 				cSimulator.SetRandomSeed(unSeed);
+                cSimulator.LoadExperiment();
 
-				cSimulator.LoadExperiment();
+                if (strLoopFunction.size() > 0) {
+                    LOGERR << "[INFO] Selected loopfunc: " << strLoopFunction << std::endl;
+                    TConfigurationNode& cConfigRoot = cSimulator.GetConfigurationRoot();
+                    CLoopFunctions* c_loop_functions = LoadCustomLoopFunction(GetNode(cConfigRoot,"loop_functions") ,cSimulator, strLoopFunction);
+                    if  (c_loop_functions != NULL) {
+                        cSimulator.SetLoopFunctions(*c_loop_functions);
+                        c_loop_functions->Init(GetNode(cConfigRoot,"loop_functions"));
+                    }
+                }
 
 				// Duplicate the finite state machine and pass it to all robots.
 				CSpace::TMapPerType cEntities = cSimulator.GetSpace().GetEntitiesByType("controller");
@@ -146,6 +176,7 @@ int main(int n_argc, char** ppch_argv) {
 
 	} catch(std::exception& ex) {
     // A fatal error occurred: dispose of data, print error and exit
+    printf("Errors:\n%s\n", ex.what());
     LOGERR << ex.what() << std::endl;
 #ifdef ARGOS_THREADSAFE_LOG
     LOG.Flush();
@@ -157,7 +188,6 @@ int main(int n_argc, char** ppch_argv) {
 	for (unsigned int i = 0; i < vecFsm.size(); ++i) {
 		delete vecFsm.at(i);
 	}
-
 
 	/* Everything's ok, exit */
   return 0;
