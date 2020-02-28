@@ -71,6 +71,7 @@
 	/****************************************/
 
 	void AutoMoDeConditionInvertedMessageCount::Init() {
+        AutoMoDeCondition::Init();
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
 		if ( (itEta != m_mapParameters.end()) ) {
 			m_fParameterEta = itEta->second;
@@ -79,7 +80,7 @@
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
 
-        if (m_strMethod == "1" || m_strMethod == "1X") {
+        if (m_strMethod == "1" || m_strMethod == "1X" || m_strMethod == "2") {
             std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");
             if ( itXi != m_mapParameters.end() ) {
                 m_unParameterXi = itXi->second;
@@ -90,7 +91,8 @@
             }
         }
 
-        if (m_strMethod == "2" || m_strMethod == "2E") {
+        m_unParameterMes = 85; //default value for 1bit 
+        if (m_strMethod == "2") {
             std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
             if ( itMes != m_mapParameters.end() ) {
                 m_unParameterMes = itMes->second;

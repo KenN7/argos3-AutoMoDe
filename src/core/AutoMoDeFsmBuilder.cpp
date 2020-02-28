@@ -220,9 +220,9 @@ namespace argos {
 
 			// Checking for parameters
 			std::vector<std::string> vecPossibleParameters = {"p", "w", "m"};
-			if (m_strMethod == "2" || m_strMethod == "2E") {
-				vecPossibleParameters.push_back("mes");
-			}
+			/* if (m_strMethod == "2" || m_strMethod == "2E") { */
+			/* 	vecPossibleParameters.push_back("mes"); */
+			/* } */
 			if (m_strMethod == "2E" || m_strMethod == "1E" || m_strMethod == "1EX") {
 				vecPossibleParameters.push_back("t");
 			}

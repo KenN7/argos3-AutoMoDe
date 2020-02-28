@@ -50,7 +50,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourStop::ControlStep() {
-
 		m_pcRobotDAO->SetRangeAndBearingMessageToSend(m_bBroadcastStateAndMessage);
 
 		m_pcRobotDAO->SetWheelsVelocity(0,0);

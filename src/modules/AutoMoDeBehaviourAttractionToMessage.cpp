@@ -77,7 +77,7 @@ namespace argos {
 			LOGERR << "[FATAL] Missing att parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
-		m_unAttractiveMessage = 85; //default value for 1
+		m_unAttractiveMessage = 85; //default value for 1bit
 
 		if (m_strMethod == "2" || m_strMethod == "2E") {
 			std::map<std::string, Real>::iterator itMes = m_mapParameters.find("mes");

@@ -32,25 +32,23 @@ namespace argos {
 
 	void AutoMoDeCondition::Init() {
 		m_unMessage = 0;
-		if (m_strMethod == "2E" || m_strMethod == "1E" || m_strMethod == "1EX" || m_strMethod == "2") {
+		if (m_strMethod == "2E" || m_strMethod == "1E" || m_strMethod == "1EX") {
 			std::map<std::string, Real>::iterator itMes = m_mapParameters.find("m");
 		    if (itMes != m_mapParameters.end()) {
-		      m_unMessage = itMes->second;
+    		    m_unMessage = itMes->second;
 		    } else {
-		      LOGERR << "[FATAL] Missing parameter m for the following condition:" << m_strLabel << std::endl;
-		      THROW_ARGOSEXCEPTION("Missing Parameter");
+	    	    LOGERR << "[FATAL] Missing parameter m for the following condition:" << m_strLabel << std::endl;
+		        THROW_ARGOSEXCEPTION("Missing Parameter");
 			}
-		}
-		if (m_strMethod == "2E" || m_strMethod == "1E" || m_strMethod == "1EX") {
+            m_unThreshold = 0;
 			std::map<std::string, Real>::iterator itThres = m_mapParameters.find("t");
 			if (itThres != m_mapParameters.end()) {
-			  m_unThreshold = itThres->second;
+			    m_unThreshold = itThres->second;
 			} else {
-			  LOGERR << "[FATAL] Missing parameter t for the following condition:" << m_strLabel << std::endl;
-			  THROW_ARGOSEXCEPTION("Missing Parameter");
+			    LOGERR << "[FATAL] Missing parameter t for the following condition:" << m_strLabel << std::endl;
+			    THROW_ARGOSEXCEPTION("Missing Parameter");
 			}
 		}
-
 	}
 
 	/****************************************/
@@ -165,16 +163,16 @@ namespace argos {
 
 	bool AutoMoDeCondition::EvaluateBernoulliProbability(Real f_probability) {
 		if (m_unMessage > 0) {
-		  	SInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unMessage);
-			//LOG << "mes:" << m_unMessage << " : "<< m_unThreshold << " :: " << unNumberNeighbors << std::endl;
-			if (unNumberNeighbors > m_unThreshold) {
+		    SInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberMessagingNeighbors(m_unMessage);
+		    /* std::cout << "mes:" << m_unMessage << " : "<< m_unThreshold << " :: " << unNumberNeighbors << std::endl; */
+		    if (m_unThreshold > 0 && unNumberNeighbors > m_unThreshold) {
   				return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
-			}
+	    	}
 		}
 		else if (m_unMessage == 0) {
+		    /* std::cout << "mes:" << m_unMessage << " : "<< f_probability<< " ::c " << std::endl; */
 		  	return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
 		}
 		return 0;
 	}
-
 }
