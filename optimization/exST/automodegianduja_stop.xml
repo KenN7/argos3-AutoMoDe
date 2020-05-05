@@ -11,7 +11,7 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/libgianduja_stop_loopfunc.so"
+  <loop_functions library="/home/khasselmann/experiments-loop-functions/build/loop-functions/gianduja/libgianduja_stop_loopfunc.so"
    label="gianduja_stop_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
   </loop_functions>
@@ -35,7 +35,7 @@
 		    <epuck_ground implementation="rot_z_only" noise_level="0.002" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/ground_sensor.xml"/>
 		    <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
-    <params readable='false' history='false' hist-folder='./fsm_history/' fsm-config="--nstates 1 --s0 0 --rwm0 10 --brda0 0 --brdb0 0"/>
+    <params readable='false' history='false' hist-folder='./fsm_history/' fsm-config="--nstates 1 --s0 1 --brd0 0"/>
     </automode_controller>
   </controllers>
 
