@@ -2,7 +2,7 @@
 # Set minimum required version
 #
 cmake_minimum_required(VERSION 2.8)
-
+set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 #
 # Set the path additional cmake files must be searched for
 #
@@ -43,4 +43,4 @@ include(${CMAKE_SOURCE_DIR}/src/cmake/FindPthreads.cmake)
 # Compile stuff
 #
 add_subdirectory(src)
-
+add_subdirectory(beacon)
